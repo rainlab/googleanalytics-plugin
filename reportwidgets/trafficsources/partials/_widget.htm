@@ -1,0 +1,27 @@
+<div class="report-widget">
+    <h3><?= e($this->property('title')) ?></h3>
+
+    <?php if (!isset($error)): ?>
+        <div 
+            class="control-chart 
+                <?= $this->property('center') ? 'centered' : null ?>
+                 <?= $this->property('legendAsTable') ? null : 'wrap-legend' ?>
+                " 
+            data-control="chart-pie" 
+            data-size="<?= $this->property('reportSize') ?>"
+            data-center-text="<?= $total ?>"
+        >
+            <ul>
+                <?php foreach ($rows as $row): ?>
+                    <li><?= e($row[0]) ?> <span><?= $row[1] ?></span></li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+    <?php else: ?>
+        <p class="flash-message static warning"><?= e($error) ?></p>
+    <?php endif ?>
+
+    <?php if ($this->property('displayDescription')): ?>
+        <p class="report-description">The traffic sources report displays the source of referrals to your website.</p>
+    <?php endif ?>
+</div>

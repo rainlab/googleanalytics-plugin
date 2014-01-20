@@ -1,0 +1,24 @@
+<div class="report-widget">
+    <h3><?= e($this->property('title')) ?></h3>
+
+    <?php if (!isset($error)): ?>
+        <div 
+            class="control-chart <?= $this->property('legendAsTable') ? null : 'wrap-legend' ?>" 
+            data-control="chart-bar" 
+            data-height="<?= $this->property('reportHeight') ?>"
+            data-full-width="1"
+        >
+            <ul>
+                <?php foreach ($rows as $row): ?>
+                    <li><?= e($row[0]) ?> <span><?= $row[1] ?></span></li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+
+        <?php if ($this->property('displayDescription')): ?>
+            <p class="report-description">This report lets you see the number of visits from different different browsers people use to reach your site.</p>
+        <?php endif ?>
+    <?php else: ?>
+        <p class="flash-message static warning"><?= e($error) ?></p>
+    <?php endif ?>
+</div>
