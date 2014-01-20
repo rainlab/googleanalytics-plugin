@@ -17,8 +17,8 @@ class Settings extends Model
 
     public $settingsFields = 'fields.yaml';
 
-    public $morphOne = [
-        'gapi_key' => ['System\Models\File', 'name' => 'attachment']
+    public $attachOne = [
+        'gapi_key' => ['System\Models\File']
     ];
 
     /**
