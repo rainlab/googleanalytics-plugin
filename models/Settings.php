@@ -18,17 +18,16 @@ class Settings extends Model
     public $settingsFields = 'fields.yaml';
 
     public $morphOne = [
-        'gapiKey' => ['System\Models\File', 'name' => 'attachment']
+        'gapi_key' => ['System\Models\File', 'name' => 'attachment']
     ];
 
     /**
      * Validation rules
      */
-
-    // public $rules = [
-    //     'projectName' => 'required',
-    //     'clientId' => 'required',
-    //     'appEmail' => 'required|email',
-    //     'profileId' => 'required'
-    // ];
+    public $rules = [
+        'project_name' => 'required',
+        'client_id' => 'required',
+        'app_email' => 'required|email',
+        'profile_id' => 'required'
+    ];
 }

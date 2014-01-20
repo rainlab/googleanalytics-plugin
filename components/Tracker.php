@@ -16,11 +16,11 @@ class Tracker extends ComponentBase
 
     public function trackingId()
     {
-        return Settings::instance()->trackingId;
+        return Settings::get('tracking_id');
     }
 
     public function domainName()
     {
-        return Settings::instance()->domainName;
+        return Settings::get('domain_name');
     }
 }
