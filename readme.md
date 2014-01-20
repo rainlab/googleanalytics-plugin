@@ -1,10 +1,10 @@
-#October Rain Google Analytics integration plugin
+# Google Analytics integration plugin
 
-This plugin adds Google Analytics tracking and reporting features to the OctoberCMS. 
+This plugin adds Google Analytics tracking and reporting features to the [OctoberCMS](http://octobercms.com).
 
 ## Configuring
 
-Google Analytics API uses the OAuth security. In order to use the plugin you need create Google API application.
+Google Analytics API uses the OAuth security. In order to use the plugin you need create a Google API application.
 
 1. Go to the [Google API Console](https://cloud.google.com/console/project) and create a new project.
 2. On the project page go to the **APIs & auth / APIs** section and enable Analytics API.
