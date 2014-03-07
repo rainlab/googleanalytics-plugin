@@ -55,7 +55,7 @@ class Plugin extends PluginBase
     public function registerSettings()
     {
         return [
-            'config' => [
+            'settings' => [
                 'label' => 'Google Analytics',
                 'icon' => 'icon-bar-chart',
                 'description' => 'Configure Google Analytics API code and tracking options.',
