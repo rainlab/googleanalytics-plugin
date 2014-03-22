@@ -9,7 +9,7 @@ class Tracker extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name' => 'Google Analytics tracker',
+            'name'        => 'Google Analytics tracker',
             'description' => 'Outputs a tracking code on a page.'
         ];
     }

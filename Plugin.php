@@ -12,10 +12,10 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name' => 'Google Analytics',
+            'name'        => 'Google Analytics',
             'description' => 'Provides the Google Analytics tracking and reporting.',
-            'author' => 'Alexey Bobkov, Samuel Georges',
-            'icon' => 'icon-bar-chart'
+            'author'      => 'Alexey Bobkov, Samuel Georges',
+            'icon'        => 'icon-bar-chart'
         ];
     }
 
@@ -29,25 +29,25 @@ class Plugin extends PluginBase
     public function registerReportWidgets()
     {
         return [
-            'RainLab\GoogleAnalytics\ReportWidgets\TrafficOverview'=>[
-                'name'=>'Google Analytics traffic overview',
-                'context'=>'dashboard'
+            'RainLab\GoogleAnalytics\ReportWidgets\TrafficOverview' => [
+                'label'   => 'Google Analytics traffic overview',
+                'context' => 'dashboard'
             ],
-            'RainLab\GoogleAnalytics\ReportWidgets\TrafficSources'=>[
-                'name'=>'Google Analytics traffic sources',
-                'context'=>'dashboard'
+            'RainLab\GoogleAnalytics\ReportWidgets\TrafficSources' => [
+                'label'   => 'Google Analytics traffic sources',
+                'context' => 'dashboard'
             ],
-            'RainLab\GoogleAnalytics\ReportWidgets\Browsers'=>[
-                'name'=>'Google Analytics browsers',
-                'context'=>'dashboard'
+            'RainLab\GoogleAnalytics\ReportWidgets\Browsers' => [
+                'label'   => 'Google Analytics browsers',
+                'context' => 'dashboard'
             ],
-            'RainLab\GoogleAnalytics\ReportWidgets\TrafficGoal'=>[
-                'name'=>'Google Analytics traffic goal',
-                'context'=>'dashboard'
+            'RainLab\GoogleAnalytics\ReportWidgets\TrafficGoal' => [
+                'label'   => 'Google Analytics traffic goal',
+                'context' => 'dashboard'
             ],
-            'RainLab\GoogleAnalytics\ReportWidgets\TopPages'=>[
-                'name'=>'Google Analytics top pages',
-                'context'=>'dashboard'
+            'RainLab\GoogleAnalytics\ReportWidgets\TopPages' => [
+                'label'   => 'Google Analytics top pages',
+                'context' => 'dashboard'
             ]
         ];
     }
@@ -56,11 +56,11 @@ class Plugin extends PluginBase
     {
         return [
             'settings' => [
-                'label' => 'Google Analytics',
-                'icon' => 'icon-bar-chart',
+                'label'       => 'Google Analytics',
+                'icon'        => 'icon-bar-chart',
                 'description' => 'Configure Google Analytics API code and tracking options.',
-                'class' => 'RainLab\GoogleAnalytics\Models\Settings',
-                'sort' => 100
+                'class'       => 'RainLab\GoogleAnalytics\Models\Settings',
+                'sort'        => 100
             ]
         ];
     }
