@@ -57,7 +57,7 @@ class Plugin extends PluginBase
         return [
             'settings' => [
                 'label'       => 'Google Analytics',
-                'icon'        => 'icon-bar-chart',
+                'icon'        => 'icon-bar-chart-o',
                 'description' => 'Configure Google Analytics API code and tracking options.',
                 'class'       => 'RainLab\GoogleAnalytics\Models\Settings',
                 'sort'        => 100
