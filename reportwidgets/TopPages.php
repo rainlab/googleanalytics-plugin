@@ -20,7 +20,8 @@ class TopPages extends ReportWidgetBase
     {
         try {
             $this->loadData();
-        } catch (Exception $ex) {
+        }
+        catch (Exception $ex) {
             $this->vars['error'] = $ex->getMessage();
         }
 
@@ -31,23 +32,23 @@ class TopPages extends ReportWidgetBase
     {
         return [
             'title' => [
-                'title' => 'Widget title',
-                'default' => 'Top Pages',
-                'type'=>'string',
-                'validationPattern'=>'^.+$',
-                'validationMessage'=>'The Widget Title is required.'
+                'title'             => 'Widget title',
+                'default'           => 'Top Pages',
+                'type'              => 'string',
+                'validationPattern' => '^.+$',
+                'validationMessage' => 'The Widget Title is required.'
             ],
             'days' => [
-                'title' => 'Number of days to display data for',
-                'default' => '7',
-                'type'=>'string',
-                'validationPattern'=>'^[0-9]+$'
+                'title'             => 'Number of days to display data for',
+                'default'           => '7',
+                'type'              => 'string',
+                'validationPattern' => '^[0-9]+$'
             ],
             'number' => [
-                'title' => 'Number of pages to display',
-                'default' => '5',
-                'type'=>'string',
-                'validationPattern'=>'^[0-9]+$'
+                'title'             => 'Number of pages to display',
+                'default'           => '5',
+                'type'              => 'string',
+                'validationPattern' => '^[0-9]+$'
             ]
         ];
     }
@@ -59,7 +60,7 @@ class TopPages extends ReportWidgetBase
             throw new ApplicationException('Invalid days value: '.$days);
 
         $obj = Analytics::instance();
-        $data = $obj->service->data_ga->get($obj->viewId, $days.'daysAgo', 'today', 'ga:pageviews', ['dimensions'=>'ga:pagePath', 'sort'=>'-ga:pageviews']);
+        $data = $obj->service->data_ga->get($obj->viewId, $days.'daysAgo', 'today', 'ga:pageviews', ['dimensions' => 'ga:pagePath', 'sort' => '-ga:pageviews']);
         $rows = $this->vars['rows'] = array_slice($data->getRows(), 0, $this->property('number'));
 
         $total = 0;

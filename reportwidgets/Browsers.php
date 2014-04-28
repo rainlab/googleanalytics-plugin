@@ -20,7 +20,8 @@ class Browsers extends ReportWidgetBase
     {
         try {
             $this->loadData();
-        } catch (Exception $ex) {
+        }
+        catch (Exception $ex) {
             $this->vars['error'] = $ex->getMessage();
         }
 
@@ -31,34 +32,34 @@ class Browsers extends ReportWidgetBase
     {
         return [
             'title' => [
-                'title' => 'Widget title',
-                'default' => 'Browsers',
-                'type'=>'string',
-                'validationPattern'=>'^.+$',
-                'validationMessage'=>'The Widget Title is required.'
+                'title'             => 'Widget title',
+                'default'           => 'Browsers',
+                'type'              => 'string',
+                'validationPattern' => '^.+$',
+                'validationMessage' => 'The Widget Title is required.'
             ],
             'reportHeight' => [
-                'title' => 'Chart height',
-                'default' => '200',
-                'type'=>'string',
-                'validationPattern'=>'^[0-9]+$',
-                'validationMessage'=>'Please specify the chart height as an integer value.'
+                'title'             => 'Chart height',
+                'default'           => '200',
+                'type'              => 'string',
+                'validationPattern' => '^[0-9]+$',
+                'validationMessage' => 'Please specify the chart height as an integer value.'
             ],
             'legendAsTable' => [
-                'title' => 'Display legend as a table',
-                'type'=>'checkbox',
-                'default' => 1
+                'title'             => 'Display legend as a table',
+                'type'              => 'checkbox',
+                'default'           => 1
             ],
             'days' => [
-                'title' => 'Number of days to display data for',
-                'default' => '7',
-                'type'=>'string',
-                'validationPattern'=>'^[0-9]+$'
+                'title'             => 'Number of days to display data for',
+                'default'           => '7',
+                'type'              => 'string',
+                'validationPattern' => '^[0-9]+$'
             ],
             'displayDescription' => [
-                'title' => 'Display the report description',
-                'type'=>'checkbox',
-                'default' => 1
+                'title'             => 'Display the report description',
+                'type'              => 'checkbox',
+                'default'           => 1
             ]
         ];
     }

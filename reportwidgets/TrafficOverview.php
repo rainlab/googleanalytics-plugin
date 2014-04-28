@@ -20,7 +20,8 @@ class TrafficOverview extends ReportWidgetBase
     {
         try {
             $this->loadData();
-        } catch (Exception $ex) {
+        }
+        catch (Exception $ex) {
             $this->vars['error'] = $ex->getMessage();
         }
 
@@ -31,17 +32,17 @@ class TrafficOverview extends ReportWidgetBase
     {
         return [
             'title' => [
-                'title' => 'Widget title',
-                'default' => 'Traffic overview',
-                'type'=>'string',
-                'validationPattern'=>'^.+$',
-                'validationMessage'=>'The Widget Title is required.'
+                'title'             => 'Widget title',
+                'default'           => 'Traffic overview',
+                'type'              => 'string',
+                'validationPattern' => '^.+$',
+                'validationMessage' => 'The Widget Title is required.'
             ],
             'days' => [
-                'title' => 'Number of days to display data for',
-                'default' => '30',
-                'type'=>'string',
-                'validationPattern'=>'^[0-9]+$'
+                'title'             => 'Number of days to display data for',
+                'default'           => '30',
+                'type'              => 'string',
+                'validationPattern' => '^[0-9]+$'
             ]
         ];
     }
@@ -54,7 +55,13 @@ class TrafficOverview extends ReportWidgetBase
         if (!$days)
             throw new ApplicationException('Invalid days value: '.$days);
 
-        $data = $obj->service->data_ga->get($obj->viewId, $days.'daysAgo', 'today', 'ga:visits', ['dimensions'=>'ga:date']);
+        $data = $obj->service->data_ga->get(
+            $obj->viewId,
+            $days.'daysAgo',
+            'today',
+            'ga:visits',
+            ['dimensions' => 'ga:date']
+        );
         $points = [];
         foreach ($data->getRows() as $row) {
             $point = [

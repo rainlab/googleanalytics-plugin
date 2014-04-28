@@ -20,7 +20,8 @@ class TrafficGoal extends ReportWidgetBase
     {
         try {
             $this->loadData();
-        } catch (Exception $ex) {
+        }
+        catch (Exception $ex) {
             $this->vars['error'] = $ex->getMessage();
         }
 
@@ -31,25 +32,25 @@ class TrafficGoal extends ReportWidgetBase
     {
         return [
             'title' => [
-                'title' => 'Widget title',
-                'default' => 'Traffic Goal',
-                'type'=>'string',
-                'validationPattern'=>'^.+$',
-                'validationMessage'=>'The Widget Title is required.'
+                'title'             => 'Widget title',
+                'default'           => 'Traffic Goal',
+                'type'              => 'string',
+                'validationPattern' => '^.+$',
+                'validationMessage' => 'The Widget Title is required.'
             ],
             'days' => [
-                'title' => 'Period',
-                'default' => '7',
-                'type'=>'string',
-                'validationPattern'=>'^[0-9]+$'
+                'title'             => 'Period',
+                'default'           => '7',
+                'type'              => 'string',
+                'validationPattern' => '^[0-9]+$'
             ],
             'goal' => [
-                'title' => 'Traffic goal, visits',
-                'description' => 'Specify the total number of desired visits per the period defined with the Period parameter',
-                'default' => '100',
-                'type'=>'string',
-                'validationPattern'=>'^[0-9]+$',
-                'validationMessage'=>'Please specify the traffic goal as an integer value.'
+                'title'             => 'Traffic goal, visits',
+                'description'       => 'Specify the total number of desired visits per the period defined with the Period parameter',
+                'default'           => '100',
+                'type'              => 'string',
+                'validationPattern' => '^[0-9]+$',
+                'validationMessage' => 'Please specify the traffic goal as an integer value.'
             ]
         ];
     }
@@ -65,7 +66,13 @@ class TrafficGoal extends ReportWidgetBase
             throw new ApplicationException('Invalid goal value: '.$goal);
 
         $obj = Analytics::instance();
-        $data = $obj->service->data_ga->get($obj->viewId, $days.'daysAgo', 'today', 'ga:visits')->getRows();
+        $data = $obj->service->data_ga->get(
+            $obj->viewId,
+            $days.'daysAgo',
+            'today',
+            'ga:visits'
+        )->getRows();
+
         $total = $this->vars['total'] = isset($data[0][0]) ? $data[0][0] : 0;
         $this->vars['percentage'] = min(round($total/$goal*100), 100);
     }
