@@ -15,7 +15,7 @@ class Plugin extends PluginBase
             'name' => 'Google Analytics',
             'description' => 'Provides the Google Analytics tracking and reporting.',
             'author' => 'Alexey Bobkov, Samuel Georges',
-            'icon' => 'icon-bar-chart'
+            'icon' => 'icon-bar-chart-o'
         ];
     }
 
@@ -57,10 +57,10 @@ class Plugin extends PluginBase
         return [
             'config' => [
                 'label' => 'Google Analytics',
-                'icon' => 'icon-bar-chart',
+                'icon' => 'icon-bar-chart-o',
                 'description' => 'Configure Google Analytics API code and tracking options.',
                 'class' => 'RainLab\GoogleAnalytics\Models\Settings',
-                'sort' => 100
+                'order' => 100
             ]
         ];
     }
