@@ -30,23 +30,23 @@ class Plugin extends PluginBase
     {
         return [
             'RainLab\GoogleAnalytics\ReportWidgets\TrafficOverview'=>[
-                'name'=>'Google Analytics traffic overview',
+                'label'=>'Google Analytics traffic overview',
                 'context'=>'dashboard'
             ],
             'RainLab\GoogleAnalytics\ReportWidgets\TrafficSources'=>[
-                'name'=>'Google Analytics traffic sources',
+                'label'=>'Google Analytics traffic sources',
                 'context'=>'dashboard'
             ],
             'RainLab\GoogleAnalytics\ReportWidgets\Browsers'=>[
-                'name'=>'Google Analytics browsers',
+                'label'=>'Google Analytics browsers',
                 'context'=>'dashboard'
             ],
             'RainLab\GoogleAnalytics\ReportWidgets\TrafficGoal'=>[
-                'name'=>'Google Analytics traffic goal',
+                'label'=>'Google Analytics traffic goal',
                 'context'=>'dashboard'
             ],
             'RainLab\GoogleAnalytics\ReportWidgets\TopPages'=>[
-                'name'=>'Google Analytics top pages',
+                'label'=>'Google Analytics top pages',
                 'context'=>'dashboard'
             ]
         ];
