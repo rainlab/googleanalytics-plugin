@@ -11,8 +11,8 @@ Google Analytics API uses the OAuth security. In order to use the plugin you nee
 3. Go to the **APIs & auth / Credentials** section on the project page and click the Create New Client ID button. In the popup window select the **Service account** option. The private key will be downloaded to your computer automatically.
 4. Copy the email address (xxxx@developer.gserviceaccount.com) from the OAuth / **Service Account** section and add it to your Google Analytics property you want to be able to access from OctoberCMS.
 5. In the OctoberCMS back-end go to the System / Settings page and click the Google Analytics link.
-6. Enter the Google API Project name, Google API Client ID, the generated email address and add the downloaded private key to the Google Analytics settings form.
-7. Specify the Tracking ID and Domain name values if you are going to use the plugin's built-in tracking code.
+6. Enter the Google API Project name, Google API Client ID, the generated email address and add the downloaded private key to the Google Analytics settings form. The API Client ID and the generated email address should be copied from the **Service Account section**.
+7. Specify the Tracking ID and Domain name values if you are going to use the plugin's built-in tracking component.
 
 ## Adding the tracking code
 
