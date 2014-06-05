@@ -21,6 +21,6 @@ Using the tracking code provided by the plugin is optional - the reporting part 
 To add the plugin's tracking code to your weisbte just drop the Google Analytics Tracker component to your CMS layout and add this code to the layout code after the page tag:
 
 ```php
-    {% page %}
-    {% component 'googleTracker' %}
+{% page %}
+{% component 'googleTracker' %}
 ```
