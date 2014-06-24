@@ -9,9 +9,11 @@
             data-full-width="1"
         >
             <ul>
+            <?php if (count($rows)): ?>
                 <?php foreach ($rows as $row): ?>
                     <li><?= e($row[0]) ?> <span><?= $row[1] ?></span></li>
                 <?php endforeach ?>
+            <?php endif; ?>
             </ul>
         </div>
 
