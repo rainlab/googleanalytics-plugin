@@ -27,6 +27,11 @@
                             </td>
                         </tr>
                     <?php endforeach ?>
+                    <?php if (!count($rows)): ?>
+                        <tr>
+                            <td colspan="3">There were no pageviews in the selected interval.</td>
+                        </tr>
+                    <?php endif ?>
                 </tbody>
             </table>
         </div>

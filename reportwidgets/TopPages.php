@@ -61,7 +61,11 @@ class TopPages extends ReportWidgetBase
 
         $obj = Analytics::instance();
         $data = $obj->service->data_ga->get($obj->viewId, $days.'daysAgo', 'today', 'ga:pageviews', ['dimensions' => 'ga:pagePath', 'sort' => '-ga:pageviews']);
-        $rows = $this->vars['rows'] = array_slice($data->getRows(), 0, $this->property('number'));
+        $rows = $data->getRows();
+        if (!$rows)
+            $rows = [];
+
+        $rows = $this->vars['rows'] = array_slice($rows, 0, $this->property('number'));
 
         $total = 0;
         foreach ($rows as $row)
