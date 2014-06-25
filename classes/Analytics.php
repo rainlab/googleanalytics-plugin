@@ -1,10 +1,11 @@
 <?php namespace RainLab\GoogleAnalytics\Classes;
 
-use RainLab\GoogleAnalytics\Models\Settings;
-use System\Classes\ApplicationException;
-use Google_Auth_AssertionCredentials;
-use Google_Service_Analytics;
+use Config;
 use Google_Client;
+use Google_Service_Analytics;
+use Google_Auth_AssertionCredentials;
+use System\Classes\ApplicationException;
+use RainLab\GoogleAnalytics\Models\Settings;
 
 class Analytics
 {
@@ -34,8 +35,11 @@ class Analytics
         if (!$settings->gapi_key)
             throw new ApplicationException('Google Analytics API private key is not uploaded. Please configure Google Analytics access on the System / Settings / Google Analytics page.');
 
+        $tmpDir = Config::get('cms.tempDir', sys_get_temp_dir()) . '/Google_Client';
+
         $this->client = new Google_Client();
         $this->client->setApplicationName($settings->project_name);
+        $this->client->setClassConfig('Google_Cache_File', 'directory', $tmpDir);
 
         /*
          * Set assertion credentials
