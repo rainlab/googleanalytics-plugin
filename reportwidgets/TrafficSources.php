@@ -89,7 +89,9 @@ class TrafficSources extends ReportWidgetBase
             ['dimensions' => 'ga:source', 'sort' => '-ga:visits']
         );
 
-        $this->vars['rows'] = array_slice($data->getRows(), 0, $this->property('number'));
+        $rows = $data->getRows() ?: [];
+
+        $this->vars['rows'] = array_slice($rows, 0, $this->property('number'));
         $this->vars['total'] = $data->getTotalsForAllResults()['ga:visits'];
     }
 }
