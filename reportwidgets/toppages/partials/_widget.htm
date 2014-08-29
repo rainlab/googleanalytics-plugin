@@ -14,15 +14,15 @@
                 <tbody>
                     <?php foreach ($rows as $row): 
                         $percentage = $total > 0 ? round($row[1]/$total*100, 2) : 0;
-                        $url = URL::to($row[0]);
+                        $url = $row[0];
                     ?>
                         <tr>
-                            <td><a href="<?= $url ?>"><?= e($row[0]) ?></a></td>
-                            <td><a href="<?= $url ?>"><?= e($row[1]) ?></a></td>
+                            <td><a href="<?= $url ?>" target="_blank"><?= e($row[0]) ?></a></td>
+                            <td><a href="<?= $url ?>" target="_blank"><?= e($row[1]) ?></a></td>
                             <td>
                                 <div class="progress">
                                     <div class="bar" style="width: <?= $percentage.'%' ?>"></div>
-                                    <a href="<?= $url ?>"><?= $percentage.'%' ?></a>
+                                    <a href="<?= $url ?>" target="_blank"><?= $percentage.'%' ?></a>
                                 </div>
                             </td>
                         </tr>
