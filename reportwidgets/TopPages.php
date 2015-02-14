@@ -2,7 +2,7 @@
 
 use Backend\Classes\ReportWidgetBase;
 use RainLab\GoogleAnalytics\Classes\Analytics;
-use System\Classes\ApplicationException;
+use ApplicationException;
 use Exception;
 
 /**

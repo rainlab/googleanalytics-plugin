@@ -4,7 +4,7 @@ use Config;
 use Google_Client;
 use Google_Service_Analytics;
 use Google_Auth_AssertionCredentials;
-use System\Classes\ApplicationException;
+use ApplicationException;
 use RainLab\GoogleAnalytics\Models\Settings;
 
 class Analytics
