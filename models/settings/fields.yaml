@@ -24,6 +24,8 @@ fields:
         type: fileupload
         commentAbove: The private key file you downloaded from Google API Console
         mode: file
+        fileTypes: p12,pfx
+        mimeTypes: bin
 
 tabs:
     fields:
