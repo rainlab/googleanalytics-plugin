@@ -35,7 +35,7 @@ class Analytics
         if (!$settings->gapi_key)
             throw new ApplicationException('Google Analytics API private key is not uploaded. Please configure Google Analytics access on the System / Settings / Google Analytics page.');
 
-        $tmpDir = Config::get('cms.tempDir', sys_get_temp_dir()) . '/Google_Client';
+        $tmpDir = temp_path() . '/Google_Client';
 
         $this->client = new Google_Client();
         $this->client->setApplicationName($settings->project_name);
