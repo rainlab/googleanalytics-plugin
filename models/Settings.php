@@ -20,7 +20,7 @@ class Settings extends Model
     public $settingsFields = 'fields.yaml';
 
     public $attachOne = [
-        'gapi_key' => ['System\Models\File']
+        'gapi_key' => ['System\Models\File', 'public' => false]
     ];
 
     /**
