@@ -32,11 +32,11 @@ class TrafficOverview extends ReportWidgetBase
     {
         return [
             'title' => [
-                'title'             => 'Widget title',
-                'default'           => 'Traffic overview',
+                'title'             => 'backend::lang.dashboard.widget_title_label',
+                'default'           => e(trans('rainlab.googleanalytics::lang.widgets.title_traffic_overview')),
                 'type'              => 'string',
                 'validationPattern' => '^.+$',
-                'validationMessage' => 'The Widget Title is required.'
+                'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
                 'title'             => 'Number of days to display data for',
@@ -68,7 +68,7 @@ class TrafficOverview extends ReportWidgetBase
                 strtotime($row[0])*1000,
                 $row[1]
             ];
-            
+
             $points[] = $point;
         }
 

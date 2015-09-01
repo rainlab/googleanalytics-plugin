@@ -32,11 +32,11 @@ class TrafficGoal extends ReportWidgetBase
     {
         return [
             'title' => [
-                'title'             => 'Widget title',
-                'default'           => 'Traffic Goal',
+                'title'             => 'backend::lang.dashboard.widget_title_label',
+                'default'           => e(trans('rainlab.googleanalytics::lang.widgets.title_traffic_goal')),
                 'type'              => 'string',
                 'validationPattern' => '^.+$',
-                'validationMessage' => 'The Widget Title is required.'
+                'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
                 'title'             => 'Period',

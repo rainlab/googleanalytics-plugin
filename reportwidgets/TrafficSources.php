@@ -32,11 +32,11 @@ class TrafficSources extends ReportWidgetBase
     {
         return [
             'title' => [
-                'title'             => 'Widget title',
-                'default'           => 'Traffic Sources',
+                'title'             => 'backend::lang.dashboard.widget_title_label',
+                'default'           => e(trans('rainlab.googleanalytics::lang.widgets.title_traffic_sources')),
                 'type'              => 'string',
                 'validationPattern' => '^.+$',
-                'validationMessage' => 'The Widget Title is required.'
+                'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'reportSize' => [
                 'title'             => 'Chart radius',

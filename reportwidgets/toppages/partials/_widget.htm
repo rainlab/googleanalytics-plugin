@@ -6,13 +6,13 @@
             <table class="table data" data-control="rowlink">
                 <thead>
                     <tr>
-                        <th><span>Page URL</span></th>
-                        <th><span>Pageviews</span></th>
-                        <th><span>% Pageviews</span></th>
+                        <th><span><?= e(trans('rainlab.googleanalytics::lang.general.page_url')) ?></span></th>
+                        <th><span><?= e(trans('rainlab.googleanalytics::lang.general.pageviews')) ?></span></th>
+                        <th><span>% <?= e(trans('rainlab.googleanalytics::lang.general.pageviews')) ?></span></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($rows as $row): 
+                    <?php foreach ($rows as $row):
                         $percentage = $total > 0 ? round($row[1]/$total*100, 2) : 0;
                         $url = $row[0];
                     ?>
@@ -29,7 +29,7 @@
                     <?php endforeach ?>
                     <?php if (!count($rows)): ?>
                         <tr>
-                            <td colspan="3">There were no pageviews in the selected interval.</td>
+                            <td colspan="3"><?= e(trans('rainlab.googleanalytics::lang.widgets.noresult_toppages')) ?></td>
                         </tr>
                     <?php endif ?>
                 </tbody>

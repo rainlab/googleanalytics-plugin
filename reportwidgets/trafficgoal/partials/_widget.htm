@@ -3,8 +3,8 @@
 
     <?php if (!isset($error)): ?>
         <div class="title-value" data-control="goal-meter" data-value="<?= $percentage ?>">
-            <p>Current: <?= $total ?></p>
-            <p class="description">Goal: <?= e($this->property('goal')) ?></p>
+            <p><?= e(trans('rainlab.googleanalytics::lang.general.current')) ?>: <?= $total ?></p>
+            <p class="description"><?= e(trans('rainlab.googleanalytics::lang.general.goal')) ?>: <?= e($this->property('goal')) ?></p>
         </div>
     <?php else: ?>
         <p class="flash-message static warning"><?= e($error) ?></p>
