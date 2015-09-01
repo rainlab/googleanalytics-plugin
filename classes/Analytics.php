@@ -6,6 +6,7 @@ use Google_Service_Analytics;
 use Google_Auth_AssertionCredentials;
 use ApplicationException;
 use RainLab\GoogleAnalytics\Models\Settings;
+use Lang;
 
 class Analytics
 {
@@ -30,10 +31,10 @@ class Analytics
     {
         $settings = Settings::instance();
         if (!strlen($settings->project_name))
-            throw new ApplicationException('Google Analytics API access is not configured. Please configure it on the System / Settings / Google Analytics page.');
+            throw new ApplicationException(Lang::get('rainlab.googleanalytics::lang.exceptions.google_api_not_configured'));
 
         if (!$settings->gapi_key)
-            throw new ApplicationException('Google Analytics API private key is not uploaded. Please configure Google Analytics access on the System / Settings / Google Analytics page.');
+            throw new ApplicationException(Lang::get('rainlab.googleanalytics::lang.exceptions.google_api_key_not_uploaded'));
 
         $tmpDir = temp_path() . '/Google_Client';
 

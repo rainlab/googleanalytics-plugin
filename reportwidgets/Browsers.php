@@ -32,11 +32,11 @@ class Browsers extends ReportWidgetBase
     {
         return [
             'title' => [
-                'title'             => 'Widget title',
-                'default'           => 'Browsers',
+                'title'             => 'backend::lang.dashboard.widget_title_label',
+                'default'           => e(trans('rainlab.googleanalytics::lang.widgets.title_browsers')),
                 'type'              => 'string',
                 'validationPattern' => '^.+$',
-                'validationMessage' => 'The Widget Title is required.'
+                'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'reportHeight' => [
                 'title'             => 'Chart height',

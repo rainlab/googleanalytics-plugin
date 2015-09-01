@@ -32,11 +32,11 @@ class TopPages extends ReportWidgetBase
     {
         return [
             'title' => [
-                'title'             => 'Widget title',
-                'default'           => 'Top Pages',
+                'title'             => 'backend::lang.dashboard.widget_title_label',
+                'default'           => e(trans('rainlab.googleanalytics::lang.widgets.title_toppages')),
                 'type'              => 'string',
                 'validationPattern' => '^.+$',
-                'validationMessage' => 'The Widget Title is required.'
+                'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
                 'title'             => 'Number of days to display data for',

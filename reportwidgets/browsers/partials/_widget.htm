@@ -2,9 +2,9 @@
     <h3><?= e($this->property('title')) ?></h3>
 
     <?php if (!isset($error)): ?>
-        <div 
-            class="control-chart <?= $this->property('legendAsTable') ? null : 'wrap-legend' ?>" 
-            data-control="chart-bar" 
+        <div
+            class="control-chart <?= $this->property('legendAsTable') ? null : 'wrap-legend' ?>"
+            data-control="chart-bar"
             data-height="<?= $this->property('reportHeight') ?>"
             data-full-width="1"
         >
@@ -18,7 +18,7 @@
         </div>
 
         <?php if ($this->property('displayDescription')): ?>
-            <p class="report-description">This report lets you see the number of visits from different different browsers people use to reach your site.</p>
+            <p class="report-description"><?= e(trans('rainlab.googleanalytics::lang.widgets.description_browsers')) ?></p>
         <?php endif ?>
     <?php else: ?>
         <p class="flash-message static warning"><?= e($error) ?></p>
