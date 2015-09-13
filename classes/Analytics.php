@@ -30,10 +30,10 @@ class Analytics
     {
         $settings = Settings::instance();
         if (!strlen($settings->project_name))
-            throw new ApplicationException('Google Analytics API access is not configured. Please configure it on the System / Settings / Google Analytics page.');
+            throw new ApplicationException(trans('rainlab.googleanalytics::lang.strings.notconfigured'));
 
         if (!$settings->gapi_key)
-            throw new ApplicationException('Google Analytics API private key is not uploaded. Please configure Google Analytics access on the System / Settings / Google Analytics page.');
+            throw new ApplicationException(trans('rainlab.googleanalytics::lang.strings.keynotuploaded'));
 
         $tmpDir = temp_path() . '/Google_Client';
 
