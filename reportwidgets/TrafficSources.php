@@ -76,10 +76,10 @@ class TrafficSources extends ReportWidgetBase
                 'default' => 1
             ],
             'blacklist' => [
-                'title' => 'Hide source',
+                'title' => 'Hide sources',
                 'default' => 'traffic2cash.xyz;googlemare.com;',
                 'type' => 'string',
-            ],
+            ]
         ];
     }
 
