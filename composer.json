@@ -16,6 +16,6 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "google/apiclient": "dev-master"
+        "google/apiclient": "1.1.6"
     }
 }

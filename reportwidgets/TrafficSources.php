@@ -1,4 +1,6 @@
-<?php namespace RainLab\GoogleAnalytics\ReportWidgets;
+<?php
+
+namespace RainLab\GoogleAnalytics\ReportWidgets;
 
 use Backend\Classes\ReportWidgetBase;
 use RainLab\GoogleAnalytics\Classes\Analytics;
@@ -13,15 +15,17 @@ use Exception;
  */
 class TrafficSources extends ReportWidgetBase
 {
+
     /**
      * Renders the widget.
      */
     public function render()
     {
-        try {
+        try
+        {
             $this->loadData();
-        }
-        catch (Exception $ex) {
+        } catch (Exception $ex)
+        {
             $this->vars['error'] = $ex->getMessage();
         }
 
@@ -32,44 +36,49 @@ class TrafficSources extends ReportWidgetBase
     {
         return [
             'title' => [
-                'title'             => 'Widget title',
-                'default'           => 'Traffic Sources',
-                'type'              => 'string',
+                'title' => 'Widget title',
+                'default' => 'Traffic Sources',
+                'type' => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'The Widget Title is required.'
             ],
             'reportSize' => [
-                'title'             => 'Chart radius',
-                'default'           => '150',
-                'type'              => 'string',
+                'title' => 'Chart radius',
+                'default' => '150',
+                'type' => 'string',
                 'validationPattern' => '^[0-9]+$',
                 'validationMessage' => 'Please specify the chart size as an integer value.'
             ],
             'center' => [
-                'title'             => 'Center the chart',
-                'type'              => 'checkbox'
+                'title' => 'Center the chart',
+                'type' => 'checkbox'
             ],
             'legendAsTable' => [
-                'title'             => 'Display legend as a table',
-                'type'              => 'checkbox',
-                'default'           => 1
+                'title' => 'Display legend as a table',
+                'type' => 'checkbox',
+                'default' => 1
             ],
             'days' => [
-                'title'             => 'Number of days to display data for',
-                'default'           => '30',
-                'type'              => 'string',
+                'title' => 'Number of days to display data for',
+                'default' => '30',
+                'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'number' => [
-                'title'             => 'Number of sources to display',
-                'default'           => '10',
-                'type'              => 'string',
+                'title' => 'Number of sources to display',
+                'default' => '10',
+                'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'displayDescription' => [
-                'title'             => 'Display the report description',
-                'type'              => 'checkbox',
-                'default'           => 1
+                'title' => 'Display the report description',
+                'type' => 'checkbox',
+                'default' => 1
+            ],
+            'blacklist' => [
+                'title' => 'Hide sources',
+                'default' => 'traffic2cash.xyz;googlemare.com;',
+                'type' => 'string',
             ]
         ];
     }
@@ -78,20 +87,29 @@ class TrafficSources extends ReportWidgetBase
     {
         $days = $this->property('days');
         if (!$days)
-            throw new ApplicationException('Invalid days value: '.$days);
+            throw new ApplicationException('Invalid days value: ' . $days);
 
         $obj = Analytics::instance();
         $data = $obj->service->data_ga->get(
-            $obj->viewId,
-            $days.'daysAgo',
-            'today',
-            'ga:visits',
-            ['dimensions' => 'ga:source', 'sort' => '-ga:visits']
+                $obj->viewId, $days . 'daysAgo', 'today', 'ga:visits', ['dimensions' => 'ga:source', 'sort' => '-ga:visits']
         );
 
-        $rows = $data->getRows() ?: [];
+        $rows = $data->getRows() ? : [];
+        $this->vars['total'] = $data->getTotalsForAllResults()['ga:visits'];
+
+        $blacklist = explode(';', $this->property('blacklist'));
+        $i = 0;
+        foreach ($rows as $source)
+        {
+            if (sizeof($blacklist) > 0 && in_array($source[0], $blacklist))
+            {
+                $this->vars['total'] = $this->vars['total'] - $source[1];
+                unset($rows[$i]);
+            }
+            $i++;
+        }
 
         $this->vars['rows'] = array_slice($rows, 0, $this->property('number'));
-        $this->vars['total'] = $data->getTotalsForAllResults()['ga:visits'];
     }
+
 }
