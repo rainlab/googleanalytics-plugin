@@ -8,17 +8,23 @@ This plugin adds Google Analytics tracking and reporting features to the [Octobe
 
 Google Analytics API uses the OAuth security. In order to use the plugin you need create a Google API application.
 
-1. Go to the [Google API Console](https://cloud.google.com/console/project) and create a new project.
+1. Go to the [Google API Console](https://cloud.google.com/console/project), from the "Select a project" dropdown, select **Create a project**.
 
-1. On the project page go to the **APIs & auth > APIs** section and enable Analytics API.
+1. Enter a name for the project, eg: `OctoberCMS Analytics`, accept the terms and click **Create**. Wait a moment and you should be automatically sent to the project page.
 
-1. Go to the **APIs & auth / Credentials** section on the project page and click the Create New Client ID button. In the popup window select the **Service account** option and click **Create ID**.
+1. From the "Use Google APIs" section, select **Enable and manage APIs** and then enable the **Analytics API** .
 
-1. A `.p12` file will be generated, this is the private key for your account. Accept the download and save it to your computer. Click **Okay got it**.
+1. Select the **Credentials** section, click **New credentials** and create a **Service account key**.
 
-1. *Copy to your clipboard* the email address (ending with `@developer.gserviceaccount.com`) from the **OAuth > Service Account** section.
+1. Select **New service account** from the "Service account" dropdown, enter a name for this account, eg: `OctoberCMS Analytics`, and an ID will be generated for you.
 
-1. Keep this tab open, the details from the **Service Account section** will be used again below.
+1. Select **P12** as the "Key type" and click **Create**.
+
+1. A `.p12` file will be generated, this is the private key for your account. Accept the download and save it to your computer. Click **Close**.
+
+1. Click on **Manage service accounts**, select the **Permissions tab** and copy to your clipboard the email address ending with `@developer.gserviceaccount.com`.
+
+1. Keep this tab open, the details from the **Permissions tab** will be used again below.
 
 ### Configure Google Analytics
 
@@ -36,9 +42,9 @@ Google Analytics API uses the OAuth security. In order to use the plugin you nee
 
 1. *Paste the Account ID from the clipboard* in to the field **Analytics View/Profile ID number**.
 
-1. Enter the name of the Google Developers Project in the **Google API project name** field.
+1. Enter the name of the Google Developers Project in the **Google API project name** field, eg: `OctoberCMS Analytics`.
 
-1. Enter the Service Account ID (ending with `.apps.googleusercontent.com`) in the **Google API Client ID** field. This should be sourced from the **Service Account section** open in the other tab.
+1. Enter the Service Account ID (ending with `.apps.googleusercontent.com`) in the **Google API Client ID** field. This should be sourced from the **Permissions tab** open in the other browser tab.
 
 1. Enter the email address (ending with `@developer.gserviceaccount.com`) in the **Email address** field.
 
