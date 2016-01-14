@@ -28,7 +28,7 @@ class Settings extends Model
      */
     public $rules = [
         'project_name' => 'required',
-        'client_id'    => 'required',
+        // 'client_id'    => 'required',
         'app_email'    => 'required|email',
         'profile_id'   => 'required'
     ];

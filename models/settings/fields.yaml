@@ -4,22 +4,23 @@ fields:
         label: rainlab.googleanalytics::lang.settings.project_name
         commentAbove: rainlab.googleanalytics::lang.settings.project_name_comment
 
-    client_id:
-        span: right
-        label: rainlab.googleanalytics::lang.settings.client_id
-        commentAbove: rainlab.googleanalytics::lang.settings.client_id_comment
-
-    app_email:
-        span: left
-        label: rainlab.googleanalytics::lang.settings.app_email
-        commentAbove: rainlab.googleanalytics::lang.settings.app_email_comment
+    # client_id:
+    #     span: right
+    #     label: rainlab.googleanalytics::lang.settings.client_id
+    #     commentAbove: rainlab.googleanalytics::lang.settings.client_id_comment
 
     profile_id:
         span: right
         label: rainlab.googleanalytics::lang.settings.profile_id
         commentAbove: rainlab.googleanalytics::lang.settings.profile_id_comment
 
+    app_email:
+        span: full
+        label: rainlab.googleanalytics::lang.settings.app_email
+        commentAbove: rainlab.googleanalytics::lang.settings.app_email_comment
+
     gapi_key:
+        span: full
         label: rainlab.googleanalytics::lang.settings.gapi_key
         type: fileupload
         commentAbove: rainlab.googleanalytics::lang.settings.gapi_key_comment

@@ -24,8 +24,6 @@ Google Analytics API uses the OAuth security. In order to use the plugin you nee
 
 1. Click on **Manage service accounts**, select the **Permissions tab** and copy to your clipboard the email address ending with `@developer.gserviceaccount.com`.
 
-1. Keep this tab open, the details from the **Permissions tab** will be used again below.
-
 ### Configure Google Analytics
 
 1. In a new tab, navigate to the main [Google Analytics site](https://www.google.com/analytics/web/) and select the property you want to track.
@@ -40,11 +38,9 @@ Google Analytics API uses the OAuth security. In order to use the plugin you nee
 
 1. Open your October back-end administration area and open **Settings > Google Analytics**. 
 
-1. *Paste the Account ID from the clipboard* in to the field **Analytics View/Profile ID number**.
-
 1. Enter the name of the Google Developers Project in the **Google API project name** field, eg: `OctoberCMS Analytics`.
 
-1. Enter the Service Account ID (ending with `.apps.googleusercontent.com`) in the **Google API Client ID** field. This should be sourced from the **Permissions tab** open in the other browser tab.
+1. *Paste the Account ID from the clipboard* in to the field **Analytics View/Profile ID number**.
 
 1. Enter the email address (ending with `@developer.gserviceaccount.com`) in the **Email address** field.
 
@@ -52,7 +48,7 @@ Google Analytics API uses the OAuth security. In order to use the plugin you nee
 
 1. Specify the **Tracking ID** (eg `UA-12312312-3`) and **Domain name** values if you are going to use the plugin's built-in tracking component.
 
-1. If Tracking not working, change **Domain name** values to `auto` (fix for newborn google analytics account).
+1. If Tracking is not working initially, enter the value `auto` for the **Domain name** field. This is a fix for newborn Google Analytics accounts.
 
 ## Adding the tracking code
 

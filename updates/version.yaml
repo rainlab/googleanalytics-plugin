@@ -4,3 +4,4 @@
 1.0.4: Fixes a bug where the certificate upload fails
 1.0.5: Minor fix to support the updated Google Analytics library
 1.0.6: Fixes dashboard widget using latest Google Analytics library
+1.0.7: Removes Client ID from settings because the workflow no longer needs it

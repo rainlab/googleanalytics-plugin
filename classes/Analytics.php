@@ -51,7 +51,7 @@ class Analytics
             $settings->gapi_key->getContents()
         ));
 
-        $this->client->setClientId($settings->client_id);
+        // $this->client->setClientId($settings->client_id);
         $this->service = new Google_Service_Analytics($this->client);
         $this->viewId = 'ga:'.$settings->profile_id;
     }
