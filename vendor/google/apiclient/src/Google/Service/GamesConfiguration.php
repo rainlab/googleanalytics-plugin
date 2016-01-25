@@ -30,7 +30,7 @@
  */
 class Google_Service_GamesConfiguration extends Google_Service
 {
-  /** View and manage your Google Play Android Developer account. */
+  /** View and manage your Google Play Developer account. */
   const ANDROIDPUBLISHER =
       "https://www.googleapis.com/auth/androidpublisher";
 
@@ -47,6 +47,7 @@ class Google_Service_GamesConfiguration extends Google_Service
   public function __construct(Google_Client $client)
   {
     parent::__construct($client);
+    $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'games/v1configuration/';
     $this->version = 'v1configuration';
     $this->serviceName = 'gamesConfiguration';

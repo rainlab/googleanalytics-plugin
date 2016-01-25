@@ -55,6 +55,7 @@ class Google_Service_Oauth2 extends Google_Service
   public function __construct(Google_Client $client)
   {
     parent::__construct($client);
+    $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = '';
     $this->version = 'v2';
     $this->serviceName = 'oauth2';
@@ -109,6 +110,10 @@ class Google_Service_Oauth2 extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
+                'token_handle' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
               ),
             ),
           )
@@ -134,6 +139,7 @@ class Google_Service_Oauth2 extends Google_Service
    *
    * @opt_param string access_token
    * @opt_param string id_token
+   * @opt_param string token_handle
    * @return Google_Service_Oauth2_Tokeninfo
    */
   public function tokeninfo($optParams = array())
@@ -297,6 +303,7 @@ class Google_Service_Oauth2_Tokeninfo extends Google_Model
         "accessType" => "access_type",
         "expiresIn" => "expires_in",
         "issuedTo" => "issued_to",
+        "tokenHandle" => "token_handle",
         "userId" => "user_id",
         "verifiedEmail" => "verified_email",
   );
@@ -306,6 +313,7 @@ class Google_Service_Oauth2_Tokeninfo extends Google_Model
   public $expiresIn;
   public $issuedTo;
   public $scope;
+  public $tokenHandle;
   public $userId;
   public $verifiedEmail;
 
@@ -357,6 +365,14 @@ class Google_Service_Oauth2_Tokeninfo extends Google_Model
   public function getScope()
   {
     return $this->scope;
+  }
+  public function setTokenHandle($tokenHandle)
+  {
+    $this->tokenHandle = $tokenHandle;
+  }
+  public function getTokenHandle()
+  {
+    return $this->tokenHandle;
   }
   public function setUserId($userId)
   {

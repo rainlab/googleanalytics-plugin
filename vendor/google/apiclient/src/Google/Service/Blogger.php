@@ -55,6 +55,7 @@ class Google_Service_Blogger extends Google_Service
   public function __construct(Google_Client $client)
   {
     parent::__construct($client);
+    $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'blogger/v3/';
     $this->version = 'v3';
     $this->serviceName = 'blogger';
@@ -2276,6 +2277,7 @@ class Google_Service_Blogger_CommentList extends Google_Collection
   protected $collection_key = 'items';
   protected $internal_gapi_mappings = array(
   );
+  public $etag;
   protected $itemsType = 'Google_Service_Blogger_Comment';
   protected $itemsDataType = 'array';
   public $kind;
@@ -2283,6 +2285,14 @@ class Google_Service_Blogger_CommentList extends Google_Collection
   public $prevPageToken;
 
 
+  public function setEtag($etag)
+  {
+    $this->etag = $etag;
+  }
+  public function getEtag()
+  {
+    return $this->etag;
+  }
   public function setItems($items)
   {
     $this->items = $items;
@@ -2536,12 +2546,21 @@ class Google_Service_Blogger_PageList extends Google_Collection
   protected $collection_key = 'items';
   protected $internal_gapi_mappings = array(
   );
+  public $etag;
   protected $itemsType = 'Google_Service_Blogger_Page';
   protected $itemsDataType = 'array';
   public $kind;
   public $nextPageToken;
 
 
+  public function setEtag($etag)
+  {
+    $this->etag = $etag;
+  }
+  public function getEtag()
+  {
+    return $this->etag;
+  }
   public function setItems($items)
   {
     $this->items = $items;
@@ -2917,12 +2936,21 @@ class Google_Service_Blogger_PostList extends Google_Collection
   protected $collection_key = 'items';
   protected $internal_gapi_mappings = array(
   );
+  public $etag;
   protected $itemsType = 'Google_Service_Blogger_Post';
   protected $itemsDataType = 'array';
   public $kind;
   public $nextPageToken;
 
 
+  public function setEtag($etag)
+  {
+    $this->etag = $etag;
+  }
+  public function getEtag()
+  {
+    return $this->etag;
+  }
   public function setItems($items)
   {
     $this->items = $items;

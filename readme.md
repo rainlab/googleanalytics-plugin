@@ -6,23 +6,33 @@ This plugin adds Google Analytics tracking and reporting features to the [Octobe
 
 ### Configure the API
 
-Google Analytics API uses the OAuth security. In order to use the plugin you need create a Google API application.
+To get started using Google Analytics API, you need to first [create or select a project in the Google Developers Console and enable the API](https://console.developers.google.com//start/api?id=analytics&credential=client_key). Using this link guides you through the process and activates the Google Analytics API automatically.
 
-1. Go to the [Google API Console](https://cloud.google.com/console/project), from the "Select a project" dropdown, select **Create a project**.
+Alternatively, you can activate the Google Analytics API yourself in the Developers Console by doing the following:
 
-1. Enter a name for the project, eg: `OctoberCMS Analytics`, accept the terms and click **Create**. Wait a moment and you should be automatically sent to the project page.
+1. Open the [Credentials page](https://console.developers.google.com/project/_/apiui/credential).
 
-1. From the "Use Google APIs" section, select **Enable and manage APIs** and then enable the **Analytics API** .
+In either case, you end up on the **Credentials** page and can create your project's credentials from here.
 
-1. Select the **Credentials** section, click **New credentials** and create a **Service account key**.
+#### Create a client ID
 
-1. Select **New service account** from the "Service account" dropdown, enter a name for this account, eg: `OctoberCMS Analytics`, and an ID will be generated for you.
+1. Open the [**Service accounts** section](https://console.developers.google.com/projectselector/permissions/serviceaccounts) of the Developers Console's **Permissions** page.
 
-1. Select **P12** as the "Key type" and click **Create**.
+1. Click **Create service account**.
 
-1. A `.p12` file will be generated, this is the private key for your account. Accept the download and save it to your computer. Click **Close**.
+1. In the **Create service account** window, type a name for the service account, eg: `OctoberCMS Analytics`.
 
-1. Click on **Manage service accounts**, select the **Permissions tab** and copy to your clipboard the email address ending with `@developer.gserviceaccount.com`.
+1. Place a tick in the box  **Furnish a new private key** and select **P12** for the **Key type**.
+
+1. Place a tick in **Enable Google Apps Domain-wide Delegation** and enter the website name for the **Product name for the consent screen**.
+
+1. Then, click **Create**.
+
+1. A `.p12` file will be generated, this is the private key for your account. Accept the download and save it to your computer.
+
+1. Click **Close**.
+
+1. Select the **Permissions tab** and copy to your clipboard the email address ending with `@developer.gserviceaccount.com`.
 
 ### Configure Google Analytics
 
@@ -46,7 +56,7 @@ Google Analytics API uses the OAuth security. In order to use the plugin you nee
 
 1. Upload the previously downloaded `.p12` private key file to the **Private key** field.
 
-1. Specify the **Tracking ID** (eg `UA-12312312-3`) and **Domain name** values if you are going to use the plugin's built-in tracking component.
+1. Specify the **Tracking ID** (eg `UA-12312312-3`) and **Domain name** values if you are going to use the plugin's built-in tracking component. To find this code, select **Admin > Property > Property Settings** from the Google Analytics menu.
 
 1. If Tracking is not working initially, enter the value `auto` for the **Domain name** field. This is a fix for newborn Google Analytics accounts.
 

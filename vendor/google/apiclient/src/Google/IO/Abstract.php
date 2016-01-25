@@ -19,7 +19,9 @@
  * Abstract IO base class
  */
 
-require_once realpath(dirname(__FILE__) . '/../../../autoload.php');
+if (!class_exists('Google_Client')) {
+  require_once dirname(__FILE__) . '/../autoload.php';
+}
 
 abstract class Google_IO_Abstract
 {
@@ -55,9 +57,10 @@ abstract class Google_IO_Abstract
   }
 
   /**
-   * Executes a Google_Http_Request and returns the resulting populated Google_Http_Request
-   * @param Google_Http_Request $request
-   * @return Google_Http_Request $request
+   * Executes a Google_Http_Request
+   * @param Google_Http_Request $request the http request to be executed
+   * @return array containing response headers, body, and http code
+   * @throws Google_IO_Exception on curl or IO error
    */
   abstract public function executeRequest(Google_Http_Request $request);
 
@@ -111,8 +114,8 @@ abstract class Google_IO_Abstract
   /**
    * Execute an HTTP Request
    *
-   * @param Google_HttpRequest $request the http request to be executed
-   * @return Google_HttpRequest http request with the response http code,
+   * @param Google_Http_Request $request the http request to be executed
+   * @return Google_Http_Request http request with the response http code,
    * response headers and response body filled in
    * @throws Google_IO_Exception on curl or IO error
    */
@@ -227,7 +230,7 @@ abstract class Google_IO_Abstract
 
   /**
    * Update a cached request, using the headers from the last response.
-   * @param Google_HttpRequest $cached A previously cached response.
+   * @param Google_Http_Request $cached A previously cached response.
    * @param mixed Associative array of response headers from the last request.
    */
   protected function updateCachedRequest($cached, $responseHeaders)

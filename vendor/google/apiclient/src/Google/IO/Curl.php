@@ -21,7 +21,9 @@
  * @author Stuart Langley <slangley@google.com>
  */
 
-require_once realpath(dirname(__FILE__) . '/../../../autoload.php');
+if (!class_exists('Google_Client')) {
+  require_once dirname(__FILE__) . '/../autoload.php';
+}
 
 class Google_IO_Curl extends Google_IO_Abstract
 {
@@ -44,9 +46,8 @@ class Google_IO_Curl extends Google_IO_Abstract
   /**
    * Execute an HTTP Request
    *
-   * @param Google_HttpRequest $request the http request to be executed
-   * @return Google_HttpRequest http request with the response http code,
-   * response headers and response body filled in
+   * @param Google_Http_Request $request the http request to be executed
+   * @return array containing response headers, body, and http code
    * @throws Google_IO_Exception on curl or IO error
    */
   public function executeRequest(Google_Http_Request $request)
@@ -72,15 +73,23 @@ class Google_IO_Curl extends Google_IO_Abstract
 
     curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
-    // 1 is CURL_SSLVERSION_TLSv1, which is not always defined in PHP.
-    curl_setopt($curl, CURLOPT_SSLVERSION, 1);
+
+    // The SSL version will be determined by the underlying library
+    // @see https://github.com/google/google-api-php-client/pull/644
+    //curl_setopt($curl, CURLOPT_SSLVERSION, 1);
+
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_HEADER, true);
 
     if ($request->canGzip()) {
       curl_setopt($curl, CURLOPT_ENCODING, 'gzip,deflate');
     }
-
+    
+    $options = $this->client->getClassConfig('Google_IO_Curl', 'options');
+    if (is_array($options)) {
+      $this->setOptions($options);
+    }
+    
     foreach ($this->options as $key => $var) {
       curl_setopt($curl, $key, $var);
     }
@@ -142,7 +151,7 @@ class Google_IO_Curl extends Google_IO_Abstract
   {
     // Since this timeout is really for putting a bound on the time
     // we'll set them both to the same. If you need to specify a longer
-    // CURLOPT_TIMEOUT, or a tigher CONNECTTIMEOUT, the best thing to
+    // CURLOPT_TIMEOUT, or a higher CONNECTTIMEOUT, the best thing to
     // do is use the setOptions method for the values individually.
     $this->options[CURLOPT_CONNECTTIMEOUT] = $timeout;
     $this->options[CURLOPT_TIMEOUT] = $timeout;

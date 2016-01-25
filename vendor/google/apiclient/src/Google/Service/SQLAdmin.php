@@ -23,7 +23,7 @@
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/cloud-sql/docs/admin-api/" target="_blank">Documentation</a>
+ * <a href="https://cloud.google.com/sql/docs/reference/latest" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -55,6 +55,7 @@ class Google_Service_SQLAdmin extends Google_Service
   public function __construct(Google_Client $client)
   {
     parent::__construct($client);
+    $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'sql/v1beta4/';
     $this->version = 'v1beta4';
     $this->serviceName = 'sqladmin';
@@ -65,7 +66,27 @@ class Google_Service_SQLAdmin extends Google_Service
         'backupRuns',
         array(
           'methods' => array(
-            'get' => array(
+            'delete' => array(
+              'path' => 'projects/{project}/instances/{instance}/backupRuns/{id}',
+              'httpMethod' => 'DELETE',
+              'parameters' => array(
+                'project' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'instance' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'id' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'get' => array(
               'path' => 'projects/{project}/instances/{instance}/backupRuns/{id}',
               'httpMethod' => 'GET',
               'parameters' => array(
@@ -284,6 +305,21 @@ class Google_Service_SQLAdmin extends Google_Service
               ),
             ),'export' => array(
               'path' => 'projects/{project}/instances/{instance}/export',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'project' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'instance' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'failover' => array(
+              'path' => 'projects/{project}/instances/{instance}/failover',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'project' => array(
@@ -533,7 +569,22 @@ class Google_Service_SQLAdmin extends Google_Service
         'sslCerts',
         array(
           'methods' => array(
-            'delete' => array(
+            'createEphemeral' => array(
+              'path' => 'projects/{project}/instances/{instance}/createEphemeral',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'project' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'instance' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'delete' => array(
               'path' => 'projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
@@ -731,6 +782,24 @@ class Google_Service_SQLAdmin extends Google_Service
  */
 class Google_Service_SQLAdmin_BackupRuns_Resource extends Google_Service_Resource
 {
+
+  /**
+   * Deletes the backup taken by a backup run. (backupRuns.delete)
+   *
+   * @param string $project Project ID of the project that contains the instance.
+   * @param string $instance Cloud SQL instance ID. This does not include the
+   * project ID.
+   * @param string $id The ID of the Backup Run to delete. To find a Backup Run
+   * ID, use the list method.
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_SQLAdmin_Operation
+   */
+  public function delete($project, $instance, $id, $optParams = array())
+  {
+    $params = array('project' => $project, 'instance' => $instance, 'id' => $id);
+    $params = array_merge($params, $optParams);
+    return $this->call('delete', array($params), "Google_Service_SQLAdmin_Operation");
+  }
 
   /**
    * Retrieves a resource containing information about a backup run.
@@ -985,6 +1054,23 @@ class Google_Service_SQLAdmin_Instances_Resource extends Google_Service_Resource
     $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
     return $this->call('export', array($params), "Google_Service_SQLAdmin_Operation");
+  }
+
+  /**
+   * Failover the instance to its failover replica instance. (instances.failover)
+   *
+   * @param string $project ID of the project that contains the read replica.
+   * @param string $instance Cloud SQL instance ID. This does not include the
+   * project ID.
+   * @param Google_InstancesFailoverRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_SQLAdmin_Operation
+   */
+  public function failover($project, $instance, Google_Service_SQLAdmin_InstancesFailoverRequest $postBody, $optParams = array())
+  {
+    $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('failover', array($params), "Google_Service_SQLAdmin_Operation");
   }
 
   /**
@@ -1258,6 +1344,26 @@ class Google_Service_SQLAdmin_Operations_Resource extends Google_Service_Resourc
  */
 class Google_Service_SQLAdmin_SslCerts_Resource extends Google_Service_Resource
 {
+
+  /**
+   * Generates a short-lived X509 certificate containing the provided public key
+   * and signed by a private key specific to the target instance. Users may use
+   * the certificate to authenticate as themselves when connecting to the
+   * database. (sslCerts.createEphemeral)
+   *
+   * @param string $project Project ID of the Cloud SQL project.
+   * @param string $instance Cloud SQL instance ID. This does not include the
+   * project ID.
+   * @param Google_SslCertsCreateEphemeralRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_SQLAdmin_SslCert
+   */
+  public function createEphemeral($project, $instance, Google_Service_SQLAdmin_SslCertsCreateEphemeralRequest $postBody, $optParams = array())
+  {
+    $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('createEphemeral', array($params), "Google_Service_SQLAdmin_SslCert");
+  }
 
   /**
    * Deletes the SSL certificate. The change will not take effect until the
@@ -1865,8 +1971,12 @@ class Google_Service_SQLAdmin_DatabaseInstance extends Google_Collection
   public $masterInstanceName;
   public $maxDiskSize;
   public $name;
+  protected $onPremisesConfigurationType = 'Google_Service_SQLAdmin_OnPremisesConfiguration';
+  protected $onPremisesConfigurationDataType = '';
   public $project;
   public $region;
+  protected $replicaConfigurationType = 'Google_Service_SQLAdmin_ReplicaConfiguration';
+  protected $replicaConfigurationDataType = '';
   public $replicaNames;
   public $selfLink;
   protected $serverCaCertType = 'Google_Service_SQLAdmin_SslCert';
@@ -1957,6 +2067,14 @@ class Google_Service_SQLAdmin_DatabaseInstance extends Google_Collection
   {
     return $this->name;
   }
+  public function setOnPremisesConfiguration(Google_Service_SQLAdmin_OnPremisesConfiguration $onPremisesConfiguration)
+  {
+    $this->onPremisesConfiguration = $onPremisesConfiguration;
+  }
+  public function getOnPremisesConfiguration()
+  {
+    return $this->onPremisesConfiguration;
+  }
   public function setProject($project)
   {
     $this->project = $project;
@@ -1972,6 +2090,14 @@ class Google_Service_SQLAdmin_DatabaseInstance extends Google_Collection
   public function getRegion()
   {
     return $this->region;
+  }
+  public function setReplicaConfiguration(Google_Service_SQLAdmin_ReplicaConfiguration $replicaConfiguration)
+  {
+    $this->replicaConfiguration = $replicaConfiguration;
+  }
+  public function getReplicaConfiguration()
+  {
+    return $this->replicaConfiguration;
   }
   public function setReplicaNames($replicaNames)
   {
@@ -2138,9 +2264,18 @@ class Google_Service_SQLAdmin_ExportContextSqlExportOptions extends Google_Colle
   protected $collection_key = 'tables';
   protected $internal_gapi_mappings = array(
   );
+  public $schemaOnly;
   public $tables;
 
 
+  public function setSchemaOnly($schemaOnly)
+  {
+    $this->schemaOnly = $schemaOnly;
+  }
+  public function getSchemaOnly()
+  {
+    return $this->schemaOnly;
+  }
   public function setTables($tables)
   {
     $this->tables = $tables;
@@ -2148,6 +2283,32 @@ class Google_Service_SQLAdmin_ExportContextSqlExportOptions extends Google_Colle
   public function getTables()
   {
     return $this->tables;
+  }
+}
+
+class Google_Service_SQLAdmin_FailoverContext extends Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $kind;
+  public $settingsVersion;
+
+
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setSettingsVersion($settingsVersion)
+  {
+    $this->settingsVersion = $settingsVersion;
+  }
+  public function getSettingsVersion()
+  {
+    return $this->settingsVersion;
   }
 }
 
@@ -2368,6 +2529,24 @@ class Google_Service_SQLAdmin_InstancesExportRequest extends Google_Model
   }
 }
 
+class Google_Service_SQLAdmin_InstancesFailoverRequest extends Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  protected $failoverContextType = 'Google_Service_SQLAdmin_FailoverContext';
+  protected $failoverContextDataType = '';
+
+
+  public function setFailoverContext(Google_Service_SQLAdmin_FailoverContext $failoverContext)
+  {
+    $this->failoverContext = $failoverContext;
+  }
+  public function getFailoverContext()
+  {
+    return $this->failoverContext;
+  }
+}
+
 class Google_Service_SQLAdmin_InstancesImportRequest extends Google_Model
 {
   protected $internal_gapi_mappings = array(
@@ -2539,12 +2718,145 @@ class Google_Service_SQLAdmin_LocationPreference extends Google_Model
   }
 }
 
+class Google_Service_SQLAdmin_MySqlReplicaConfiguration extends Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $caCertificate;
+  public $clientCertificate;
+  public $clientKey;
+  public $connectRetryInterval;
+  public $dumpFilePath;
+  public $kind;
+  public $masterHeartbeatPeriod;
+  public $password;
+  public $sslCipher;
+  public $username;
+  public $verifyServerCertificate;
+
+
+  public function setCaCertificate($caCertificate)
+  {
+    $this->caCertificate = $caCertificate;
+  }
+  public function getCaCertificate()
+  {
+    return $this->caCertificate;
+  }
+  public function setClientCertificate($clientCertificate)
+  {
+    $this->clientCertificate = $clientCertificate;
+  }
+  public function getClientCertificate()
+  {
+    return $this->clientCertificate;
+  }
+  public function setClientKey($clientKey)
+  {
+    $this->clientKey = $clientKey;
+  }
+  public function getClientKey()
+  {
+    return $this->clientKey;
+  }
+  public function setConnectRetryInterval($connectRetryInterval)
+  {
+    $this->connectRetryInterval = $connectRetryInterval;
+  }
+  public function getConnectRetryInterval()
+  {
+    return $this->connectRetryInterval;
+  }
+  public function setDumpFilePath($dumpFilePath)
+  {
+    $this->dumpFilePath = $dumpFilePath;
+  }
+  public function getDumpFilePath()
+  {
+    return $this->dumpFilePath;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setMasterHeartbeatPeriod($masterHeartbeatPeriod)
+  {
+    $this->masterHeartbeatPeriod = $masterHeartbeatPeriod;
+  }
+  public function getMasterHeartbeatPeriod()
+  {
+    return $this->masterHeartbeatPeriod;
+  }
+  public function setPassword($password)
+  {
+    $this->password = $password;
+  }
+  public function getPassword()
+  {
+    return $this->password;
+  }
+  public function setSslCipher($sslCipher)
+  {
+    $this->sslCipher = $sslCipher;
+  }
+  public function getSslCipher()
+  {
+    return $this->sslCipher;
+  }
+  public function setUsername($username)
+  {
+    $this->username = $username;
+  }
+  public function getUsername()
+  {
+    return $this->username;
+  }
+  public function setVerifyServerCertificate($verifyServerCertificate)
+  {
+    $this->verifyServerCertificate = $verifyServerCertificate;
+  }
+  public function getVerifyServerCertificate()
+  {
+    return $this->verifyServerCertificate;
+  }
+}
+
+class Google_Service_SQLAdmin_OnPremisesConfiguration extends Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $hostPort;
+  public $kind;
+
+
+  public function setHostPort($hostPort)
+  {
+    $this->hostPort = $hostPort;
+  }
+  public function getHostPort()
+  {
+    return $this->hostPort;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+}
+
 class Google_Service_SQLAdmin_Operation extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $endTime;
-  protected $errorType = 'Google_Service_SQLAdmin_OperationError';
+  protected $errorType = 'Google_Service_SQLAdmin_OperationErrors';
   protected $errorDataType = '';
   protected $exportContextType = 'Google_Service_SQLAdmin_ExportContext';
   protected $exportContextDataType = '';
@@ -2571,7 +2883,7 @@ class Google_Service_SQLAdmin_Operation extends Google_Model
   {
     return $this->endTime;
   }
-  public function setError(Google_Service_SQLAdmin_OperationError $error)
+  public function setError(Google_Service_SQLAdmin_OperationErrors $error)
   {
     $this->error = $error;
   }
@@ -2720,13 +3032,14 @@ class Google_Service_SQLAdmin_OperationError extends Google_Model
   }
 }
 
-class Google_Service_SQLAdmin_OperationError extends Google_Collection
+class Google_Service_SQLAdmin_OperationErrors extends Google_Collection
 {
   protected $collection_key = 'errors';
   protected $internal_gapi_mappings = array(
   );
   protected $errorsType = 'Google_Service_SQLAdmin_OperationError';
   protected $errorsDataType = 'array';
+  public $kind;
 
 
   public function setErrors($errors)
@@ -2736,6 +3049,14 @@ class Google_Service_SQLAdmin_OperationError extends Google_Collection
   public function getErrors()
   {
     return $this->errors;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
   }
 }
 
@@ -2776,11 +3097,48 @@ class Google_Service_SQLAdmin_OperationsListResponse extends Google_Collection
   }
 }
 
+class Google_Service_SQLAdmin_ReplicaConfiguration extends Google_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $failoverTarget;
+  public $kind;
+  protected $mysqlReplicaConfigurationType = 'Google_Service_SQLAdmin_MySqlReplicaConfiguration';
+  protected $mysqlReplicaConfigurationDataType = '';
+
+
+  public function setFailoverTarget($failoverTarget)
+  {
+    $this->failoverTarget = $failoverTarget;
+  }
+  public function getFailoverTarget()
+  {
+    return $this->failoverTarget;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setMysqlReplicaConfiguration(Google_Service_SQLAdmin_MySqlReplicaConfiguration $mysqlReplicaConfiguration)
+  {
+    $this->mysqlReplicaConfiguration = $mysqlReplicaConfiguration;
+  }
+  public function getMysqlReplicaConfiguration()
+  {
+    return $this->mysqlReplicaConfiguration;
+  }
+}
+
 class Google_Service_SQLAdmin_RestoreBackupContext extends Google_Model
 {
   protected $internal_gapi_mappings = array(
   );
   public $backupRunId;
+  public $instanceId;
   public $kind;
 
 
@@ -2791,6 +3149,14 @@ class Google_Service_SQLAdmin_RestoreBackupContext extends Google_Model
   public function getBackupRunId()
   {
     return $this->backupRunId;
+  }
+  public function setInstanceId($instanceId)
+  {
+    $this->instanceId = $instanceId;
+  }
+  public function getInstanceId()
+  {
+    return $this->instanceId;
   }
   public function setKind($kind)
   {
@@ -2811,6 +3177,8 @@ class Google_Service_SQLAdmin_Settings extends Google_Collection
   public $authorizedGaeApplications;
   protected $backupConfigurationType = 'Google_Service_SQLAdmin_BackupConfiguration';
   protected $backupConfigurationDataType = '';
+  public $crashSafeReplicationEnabled;
+  public $dataDiskSizeGb;
   protected $databaseFlagsType = 'Google_Service_SQLAdmin_DatabaseFlags';
   protected $databaseFlagsDataType = 'array';
   public $databaseReplicationEnabled;
@@ -2848,6 +3216,22 @@ class Google_Service_SQLAdmin_Settings extends Google_Collection
   public function getBackupConfiguration()
   {
     return $this->backupConfiguration;
+  }
+  public function setCrashSafeReplicationEnabled($crashSafeReplicationEnabled)
+  {
+    $this->crashSafeReplicationEnabled = $crashSafeReplicationEnabled;
+  }
+  public function getCrashSafeReplicationEnabled()
+  {
+    return $this->crashSafeReplicationEnabled;
+  }
+  public function setDataDiskSizeGb($dataDiskSizeGb)
+  {
+    $this->dataDiskSizeGb = $dataDiskSizeGb;
+  }
+  public function getDataDiskSizeGb()
+  {
+    return $this->dataDiskSizeGb;
   }
   public function setDatabaseFlags($databaseFlags)
   {
@@ -3036,6 +3420,24 @@ class Google_Service_SQLAdmin_SslCertDetail extends Google_Model
   public function getCertPrivateKey()
   {
     return $this->certPrivateKey;
+  }
+}
+
+class Google_Service_SQLAdmin_SslCertsCreateEphemeralRequest extends Google_Model
+{
+  protected $internal_gapi_mappings = array(
+        "publicKey" => "public_key",
+  );
+  public $publicKey;
+
+
+  public function setPublicKey($publicKey)
+  {
+    $this->publicKey = $publicKey;
+  }
+  public function getPublicKey()
+  {
+    return $this->publicKey;
   }
 }
 

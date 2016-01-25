@@ -53,6 +53,7 @@ class Google_Service_Coordinate extends Google_Service
   public function __construct(Google_Client $client)
   {
     parent::__construct($client);
+    $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'coordinate/v1/';
     $this->version = 'v1';
     $this->serviceName = 'coordinate';
@@ -162,13 +163,17 @@ class Google_Service_Coordinate extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'maxResults' => array(
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'pageToken' => array(
+                'omitJobChanges' => array(
                   'location' => 'query',
-                  'type' => 'string',
+                  'type' => 'boolean',
                 ),
               ),
             ),'patch' => array(
@@ -556,8 +561,10 @@ class Google_Service_Coordinate_Jobs_Resource extends Google_Service_Resource
    *
    * @opt_param string minModifiedTimestampMs Minimum time a job was modified in
    * milliseconds since epoch.
-   * @opt_param string maxResults Maximum number of results to return in one page.
    * @opt_param string pageToken Continuation token
+   * @opt_param string maxResults Maximum number of results to return in one page.
+   * @opt_param bool omitJobChanges Whether to omit detail job history
+   * information.
    * @return Google_Service_Coordinate_JobListResponse
    */
   public function listJobs($teamId, $optParams = array())

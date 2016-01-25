@@ -24,7 +24,7 @@
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/speed/docs/insights/v1/getting_started" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/speed/docs/insights/v2/getting-started" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -44,6 +44,7 @@ class Google_Service_Pagespeedonline extends Google_Service
   public function __construct(Google_Client $client)
   {
     parent::__construct($client);
+    $this->rootUrl = 'https://www.googleapis.com/';
     $this->servicePath = 'pagespeedonline/v2/';
     $this->version = 'v2';
     $this->serviceName = 'pagespeedonline';
