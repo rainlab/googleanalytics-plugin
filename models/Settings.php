@@ -27,9 +27,7 @@ class Settings extends Model
      * Validation rules
      */
     public $rules = [
-        'project_name' => 'required',
-        // 'client_id'    => 'required',
-        'app_email'    => 'required|email',
+        'gapi_key'   => 'required',
         'profile_id'   => 'required'
     ];
 }

@@ -22,13 +22,11 @@ In either case, you end up on the **Credentials** page and can create your proje
 
 1. In the **Create service account** window, type a name for the service account, eg: `OctoberCMS Analytics`.
 
-1. Place a tick in the box  **Furnish a new private key** and select **P12** for the **Key type**.
-
-1. Place a tick in **Enable Google Apps Domain-wide Delegation** and enter the website name for the **Product name for the consent screen**.
+1. Place a tick in the box  **Furnish a new private key** and select **JSON** for the **Key type**.
 
 1. Then, click **Create**.
 
-1. A `.p12` file will be generated, this is the private key for your account. Accept the download and save it to your computer.
+1. A `.json` file will be generated, this is the private key for your account. Accept the download and save it to your computer.
 
 1. Click **Close**.
 
@@ -42,19 +40,15 @@ In either case, you end up on the **Credentials** page and can create your proje
 
 1. *Paste the email address from the clipboard* in to the field **Add permissions for** and make sure the permission is set to **Read & Analyse**. Click **Add**.
 
-1. Click the **Admin** main menu tab again and select **Account > Account Settings** from the menu. *Copy to your clipboard* the Account ID (should be a number).
+1. Click the **Admin** main menu tab again and select **View > View Settings** from the menu. *Copy to your clipboard* the Profile ID (should be a number).
 
 ### Configure October back-end area
 
-1. Open your October back-end administration area and open **Settings > Google Analytics**. 
-
-1. Enter the name of the Google Developers Project in the **Google API project name** field, eg: `OctoberCMS Analytics`.
+1. Open your October back-end administration area and open **Settings > Google Analytics**.
 
 1. *Paste the Account ID from the clipboard* in to the field **Analytics View/Profile ID number**.
 
-1. Enter the email address (ending with `@developer.gserviceaccount.com`) in the **Email address** field.
-
-1. Upload the previously downloaded `.p12` private key file to the **Private key** field.
+1. Upload the previously downloaded `.json` private key file to the **Private key** field.
 
 1. Specify the **Tracking ID** (eg `UA-12312312-3`) and **Domain name** values if you are going to use the plugin's built-in tracking component. To find this code, select **Admin > Property > Property Settings** from the Google Analytics menu.
 
@@ -70,3 +64,18 @@ To add the plugin's tracking code to your website just drop the Google Analytics
 {% page %}
 {% component 'googleTracker' %}
 ```
+
+## Troubleshooting
+
+### Fix for Windows / XAMPP
+
+**cURL error 60: SSL certificate problem: unable to get local issuer certificate**
+
+1. Follow this link: http://curl.haxx.se/ca/cacert.pem and save it in a file called `cacert.pem`.
+
+1. Open your `php.ini` file insert or edit the following line: 
+    ```
+    curl.cainfo = "[pathtothisfile]\cacert.pem"
+    ```
+
+1. Restart Apache

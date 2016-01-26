@@ -1,0 +1,21 @@
+{
+    "name": "rainlab/googleanalytics",
+    "description": "Google Analytics integration plugin for OctoberCMS",
+    "homepage": "http://octobercms.com",
+    "keywords": ["october", "cms", "rainlab", "google", "analytics"],
+    "authors": [
+        {
+            "name": "Alexey Bobkov",
+            "email": "aleksey.bobkov@gmail.com"
+        },
+        {
+            "name": "Samuel Georges",
+            "email": "daftspunky@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "guzzlehttp/guzzle": "~5.0",
+        "google/apiclient": "^2.0.0@RC"
+    }
+}

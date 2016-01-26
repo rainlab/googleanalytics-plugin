@@ -2,6 +2,7 @@
 
 use Config;
 use Google_Client;
+use Google_Cache_File;
 use Google_Service_Analytics;
 use Google_Auth_AssertionCredentials;
 use ApplicationException;
@@ -28,10 +29,8 @@ class Analytics
 
     protected function init()
     {
-        require_once __DIR__ . '/../vendor/google/apiclient/src/Google/autoload.php';
-
         $settings = Settings::instance();
-        if (!strlen($settings->project_name)) {
+        if (!strlen($settings->profile_id)) {
             throw new ApplicationException(trans('rainlab.googleanalytics::lang.strings.notconfigured'));
         }
 
@@ -39,31 +38,27 @@ class Analytics
             throw new ApplicationException(trans('rainlab.googleanalytics::lang.strings.keynotuploaded'));
         }
 
-        $tmpDir = temp_path() . '/Google_Client';
-
         $client = new Google_Client();
-        $client->setApplicationName($settings->project_name);
-        $client->setClassConfig('Google_Cache_File', 'directory', $tmpDir);
+
+        /*
+         * Set caching
+         */
+        $cache = new Google_Cache_File(temp_path() . '/Google_Client');
+        $client->setCache($cache);
 
         /*
          * Set assertion credentials
          */
-        $cred = new Google_Auth_AssertionCredentials(
-            $settings->app_email,
-            array(Google_Service_Analytics::ANALYTICS_READONLY),
-            $settings->gapi_key->getContents()
-        );
+        $auth = json_decode($settings->gapi_key->getContents(), true);
+        $client->setAuthConfig($auth);
+        $client->addScope(Google_Service_Analytics::ANALYTICS_READONLY);
 
-        $client->setAssertionCredentials($cred);
-        // $client->setClientId($settings->client_id);
-
-        if ($client->getAuth()->isAccessTokenExpired()) {
-            $client->getAuth()->refreshTokenWithAssertion($cred);
+        if ($client->isAccessTokenExpired()) {
+            $client->refreshTokenWithAssertion();
         }
 
         $this->client = $client;
         $this->service = new Google_Service_Analytics($client);
         $this->viewId = 'ga:'.$settings->profile_id;
-
     }
 }
