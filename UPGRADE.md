@@ -5,7 +5,7 @@
 <a name="upgrade-1.1"></a>
 ## Upgrading To 1.1
 
-The settings and instructions for authorizing up Google have been drastically simplified. For existing accounts, you will need to generate a new key file using these steps:
+The settings and instructions for authorizing Google have been drastically simplified. For existing accounts, you will need to generate a new key file using these steps:
 
 1. Log in to the [Google Developers Console](https://console.developers.google.com/permissions/serviceaccounts) and select the **Permissions > Service accounts** section.
 1. Click the menu dropdown icon next to the Service account

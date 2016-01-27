@@ -12,7 +12,9 @@ Alternatively, you can activate the Google Analytics API yourself in the Develop
 
 1. Open the [Credentials page](https://console.developers.google.com/project/_/apiui/credential).
 
-In either case, you end up on the **Credentials** page and can create your project's credentials from here.
+1. Select the **Overview** menu item and enable the **Analytics API**.
+
+In either case, you should end up on the **Credentials** page and can create your project's credentials from here.
 
 #### Create a client ID
 
@@ -30,7 +32,7 @@ In either case, you end up on the **Credentials** page and can create your proje
 
 1. Click **Close**.
 
-1. Select the **Permissions tab** and copy to your clipboard the email address ending with `@developer.gserviceaccount.com`.
+1. You should see an email ending with `iam.gserviceaccount.com`, if not select the **Permissions tab**. Copy this address to your clipboard.
 
 ### Configure Google Analytics
 
