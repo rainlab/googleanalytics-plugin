@@ -1,5 +1,16 @@
 <?php
+
 return [
+    'widgets' => [
+        'title_browsers' => 'مرورگر ها',
+        'description_browsers' => 'این گزاش این امکان را به شما میدهد تا از دفعات بازدید کاربران با مرورگر های مختلف اطلاع پیدا کنید. ',
+        'title_toppages' => 'صفحات داغ',
+        'noresult_toppages' => 'در بازه زمانی انتخاب شده صفحه ای به نمایش در نیامده است',
+        'title_traffic_goal' => 'ترافیک هدف',
+        'title_traffic_overview' => 'مرور ترافیک',
+        'title_traffic_sources' => 'منابع ترافیک',
+        'description_traffic_sources' => 'گزارش منابع ترافیک، منابعی را که به وب سایت شما اشاره کرده اند را نمایش میدهد.',
+    ],
     'permissions' => [
         'tab'      => 'افزونه تجزیه و تحلیل ترافیک گوگل',
         'settings' => 'دسترسی به تنظیمات',
@@ -12,6 +23,10 @@ return [
         'tracking'       => 'ردیابی',
         'tracker_desc'   => 'وارد کردن کد ردیابی در صفحه',
         'settings_desc'  => 'تنظیم کد API و گزینه های ردیابی سیستم تجزیه و تحلیل ترافیک گوگل.',
+        'page_url'       => 'آدرس صفحه',
+        'pageviews'      => 'نمایش های صفحه',
+        'current'        => 'جاری',
+        'goal'           => 'هدف'
     ],
     'settings'    => [
         'project_name'         => 'نام پروژه API گوگل',
