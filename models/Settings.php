@@ -30,4 +30,9 @@ class Settings extends Model
         'gapi_key'   => 'required',
         'profile_id'   => 'required'
     ];
+
+    public function initSettingsData()
+    {
+        $this->domain_name = 'auto';
+    }
 }
