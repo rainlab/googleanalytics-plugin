@@ -6,3 +6,4 @@
 1.0.6: Fixes dashboard widget using latest Google Analytics library
 1.0.7: Removes Client ID from settings because the workflow no longer needs it
 1.1.0: !!! Updated to the latest Google API library
+1.2.0: Update Guzzle library to version 6.0
