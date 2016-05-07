@@ -70,8 +70,8 @@ class Plugin extends PluginBase
                 'icon'        => 'icon-bar-chart-o',
                 'description' => 'rainlab.googleanalytics::lang.strings.settings_desc',
                 'class'       => 'RainLab\GoogleAnalytics\Models\Settings',
-                'permissions' => ['rainlab.googleanalytics.settings'],
-                'order'       => 600
+                'permissions' => ['rainlab.googleanalytics.access_settings'],
+                'order'       => 600,
             ]
         ];
     }
