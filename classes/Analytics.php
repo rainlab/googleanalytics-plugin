@@ -1,5 +1,6 @@
 <?php namespace RainLab\GoogleAnalytics\Classes;
 
+use App;
 use Config;
 use Google_Client;
 use Google_Cache_File;
@@ -43,7 +44,7 @@ class Analytics
         /*
          * Set caching
          */
-        $cache = new Google_Cache_File(temp_path() . '/Google_Client');
+        $cache = App::make(CacheItemPool::class);
         $client->setCache($cache);
 
         /*
