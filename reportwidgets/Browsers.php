@@ -39,25 +39,25 @@ class Browsers extends ReportWidgetBase
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'reportHeight' => [
-                'title'             => 'Chart height',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.browsers_report_height',
                 'default'           => '200',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'Please specify the chart height as an integer value.'
+                'validationMessage' => 'rainlab.googleanalytics::lang.widgets.browsers_report_height_validation'
             ],
             'legendAsTable' => [
-                'title'             => 'Display legend as a table',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.legend_as_table',
                 'type'              => 'checkbox',
                 'default'           => 1
             ],
             'days' => [
-                'title'             => 'Number of days to display data for',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.days',
                 'default'           => '7',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'displayDescription' => [
-                'title'             => 'Display the report description',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.display_description',
                 'type'              => 'checkbox',
                 'default'           => 1
             ]
