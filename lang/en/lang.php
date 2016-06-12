@@ -3,7 +3,7 @@
 return [
     'widgets' => [
         'title_browsers' => 'Browsers',
-        'description_browsers' => 'This report lets you see the number of visits from different different browsers people use to reach your site.',
+        'description_browsers' => 'This report lets you see the number of visits from different browsers people use to reach your site.',
         'title_toppages' => 'Top Pages',
         'noresult_toppages' => 'There were no pageviews in the selected interval.',
         'title_traffic_goal' => 'Traffic Goal',
