@@ -39,35 +39,35 @@ class TrafficSources extends ReportWidgetBase
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'reportSize' => [
-                'title'             => 'Chart radius',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.traffic_sources_report_size',
                 'default'           => '150',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'Please specify the chart size as an integer value.'
+                'validationMessage' => 'rainlab.googleanalytics::lang.widgets.traffic_sources_report_size_validation'
             ],
             'center' => [
-                'title'             => 'Center the chart',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.traffic_sources_center',
                 'type'              => 'checkbox'
             ],
             'legendAsTable' => [
-                'title'             => 'Display legend as a table',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.legend_as_table',
                 'type'              => 'checkbox',
                 'default'           => 1
             ],
             'days' => [
-                'title'             => 'Number of days to display data for',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.days',
                 'default'           => '30',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'number' => [
-                'title'             => 'Number of sources to display',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.traffic_sources_number',
                 'default'           => '10',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'displayDescription' => [
-                'title'             => 'Display the report description',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.display_description',
                 'type'              => 'checkbox',
                 'default'           => 1
             ]
