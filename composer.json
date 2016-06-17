@@ -1,5 +1,6 @@
 {
     "name": "rainlab/googleanalytics",
+    "type": "october-plugin",
     "description": "Google Analytics integration plugin for OctoberCMS",
     "homepage": "http://octobercms.com",
     "keywords": ["october", "cms", "rainlab", "google", "analytics"],
