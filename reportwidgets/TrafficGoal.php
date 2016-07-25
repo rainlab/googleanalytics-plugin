@@ -39,18 +39,18 @@ class TrafficGoal extends ReportWidgetBase
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
-                'title'             => 'Period',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.traffic_goal_days',
                 'default'           => '7',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'goal' => [
-                'title'             => 'Traffic goal, visits',
-                'description'       => 'Specify the total number of desired visits per the period defined with the Period parameter',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.traffic_goal_goal',
+                'description'       => 'rainlab.googleanalytics::lang.widgets.traffic_goal_goal_description',
                 'default'           => '100',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'Please specify the traffic goal as an integer value.'
+                'validationMessage' => 'rainlab.googleanalytics::lang.widgets.traffic_goal_goal_validation'
             ]
         ];
     }

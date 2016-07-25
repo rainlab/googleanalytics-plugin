@@ -39,13 +39,13 @@ class TopPages extends ReportWidgetBase
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
-                'title'             => 'Number of days to display data for',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.days',
                 'default'           => '7',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'number' => [
-                'title'             => 'Number of pages to display',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.toppages_number',
                 'default'           => '5',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$'

@@ -39,7 +39,7 @@ class TrafficOverview extends ReportWidgetBase
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
-                'title'             => 'Number of days to display data for',
+                'title'             => 'rainlab.googleanalytics::lang.widgets.days',
                 'default'           => '30',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$'
