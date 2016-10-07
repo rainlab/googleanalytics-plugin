@@ -1,21 +1,17 @@
 <?php namespace RainLab\GoogleAnalytics;
 
-/**
- * The plugin.php file (called the plugin initialization script) defines the plugin information class.
- */
-
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
-
     public function pluginDetails()
     {
         return [
             'name'        => 'Google Analytics',
             'description' => 'rainlab.googleanalytics::lang.strings.plugin_desc',
             'author'      => 'Alexey Bobkov, Samuel Georges',
-            'icon'        => 'icon-bar-chart-o'
+            'icon'        => 'icon-bar-chart-o',
+            'homepage'    => 'https://github.com/rainlab/googleanalytics-plugin'
         ];
     }
 
@@ -31,8 +27,8 @@ class Plugin extends PluginBase
         return [
             'rainlab.googleanalytics.access_settings' => [
                 'tab'   => 'rainlab.googleanalytics::lang.permissions.tab',
-                'label' => 'rainlab.googleanalytics::lang.permissions.settings',
-            ],
+                'label' => 'rainlab.googleanalytics::lang.permissions.settings'
+            ]
         ];
     }
 
@@ -71,7 +67,7 @@ class Plugin extends PluginBase
                 'description' => 'rainlab.googleanalytics::lang.strings.settings_desc',
                 'class'       => 'RainLab\GoogleAnalytics\Models\Settings',
                 'permissions' => ['rainlab.googleanalytics.access_settings'],
-                'order'       => 600,
+                'order'       => 600
             ]
         ];
     }
