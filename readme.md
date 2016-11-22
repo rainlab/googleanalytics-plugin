@@ -6,7 +6,7 @@ This plugin adds Google Analytics tracking and reporting features to the [Octobe
 
 ### Configure the API
 
-To get started using Google Analytics API, you need to first [create or select a project in the Google Developers Console and enable the API](https://console.developers.google.com//start/api?id=analytics&credential=client_key). Using this link guides you through the process and activates the Google Analytics API automatically.
+To get started using Google Analytics API, you need to first [create or select a project in the Google Developers Console and enable the API](https://console.developers.google.com/start/api?id=analytics&credential=client_key). Using this link guides you through the process and activates the Google Analytics API automatically.
 
 Alternatively, you can activate the Google Analytics API yourself in the Developers Console by doing the following:
 
