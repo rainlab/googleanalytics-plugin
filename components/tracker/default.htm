@@ -5,6 +5,9 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', '{{ __SELF__.trackingId }}', '{{ __SELF__.domainName }}');
+{% if __SELF__.anonymizeIp %}
+  ga('set', 'anonymizeIp', true);
+{% endif %}
   ga('send', 'pageview');
 
 </script>
