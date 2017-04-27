@@ -62,15 +62,20 @@ class TrafficOverview extends ReportWidgetBase
             'ga:visits',
             ['dimensions' => 'ga:date']
         );
+        
+        $rows = $data->getRows();
+        if (!$rows) {
+            throw new ApplicationException('No traffic found yet.');
+
         $points = [];
-        foreach ($data->getRows() as $row) {
+        foreach ($rows as $row) {
             $point = [
                 strtotime($row[0])*1000,
                 $row[1]
             ];
 
             $points[] = $point;
-        }
+        }            
 
         $this->vars['rows'] = str_replace('"', '', substr(substr(json_encode($points), 1), 0, -1));
     }
