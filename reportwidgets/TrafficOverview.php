@@ -64,7 +64,7 @@ class TrafficOverview extends ReportWidgetBase
         );
         
         $rows = $data->getRows();
-        if (!$rows) {
+        if (!$rows)
             throw new ApplicationException('No traffic found yet.');
 
         $points = [];
