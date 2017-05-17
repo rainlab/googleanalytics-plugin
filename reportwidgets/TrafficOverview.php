@@ -52,8 +52,9 @@ class TrafficOverview extends ReportWidgetBase
         $obj = Analytics::instance();
 
         $days = $this->property('days');
-        if (!$days)
+        if (!$days) {
             throw new ApplicationException('Invalid days value: '.$days);
+        }
 
         $data = $obj->service->data_ga->get(
             $obj->viewId,
@@ -62,10 +63,11 @@ class TrafficOverview extends ReportWidgetBase
             'ga:visits',
             ['dimensions' => 'ga:date']
         );
-        
+
         $rows = $data->getRows();
-        if (!$rows)
+        if (!$rows) {
             throw new ApplicationException('No traffic found yet.');
+        }
 
         $points = [];
         foreach ($rows as $row) {
@@ -75,9 +77,8 @@ class TrafficOverview extends ReportWidgetBase
             ];
 
             $points[] = $point;
-        }            
+        }
 
         $this->vars['rows'] = str_replace('"', '', substr(substr(json_encode($points), 1), 0, -1));
     }
-
 }
