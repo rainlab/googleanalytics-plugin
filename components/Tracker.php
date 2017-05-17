@@ -5,7 +5,6 @@ use RainLab\GoogleAnalytics\Models\Settings;
 
 class Tracker extends ComponentBase
 {
-
     public function componentDetails()
     {
         return [
