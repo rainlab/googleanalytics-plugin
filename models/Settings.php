@@ -34,5 +34,6 @@ class Settings extends Model
     public function initSettingsData()
     {
         $this->domain_name = 'auto';
+        $this->anonymize_ip = false;
     }
 }

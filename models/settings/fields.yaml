@@ -25,3 +25,10 @@ tabs:
             span: right
             label: rainlab.googleanalytics::lang.settings.domain_name
             commentAbove: rainlab.googleanalytics::lang.settings.domain_name_comment
+
+        anonymize_ip:
+            tab: rainlab.googleanalytics::lang.strings.tracking
+            type: switch
+            span: left
+            label: rainlab.googleanalytics::lang.settings.anonymize_ip
+            commentAbove: rainlab.googleanalytics::lang.settings.anonymize_ip_comment

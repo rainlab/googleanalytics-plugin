@@ -49,6 +49,7 @@ return [
         'profile_id'           => 'Analytics View/Profile ID number',
         'gapi_key'             => 'Private key',
         'tracking_id'          => 'Tracking ID',
+        'anonymize_ip'         => 'Anonymize IP',
         'domain_name'          => 'Domain name',
         'project_name_comment' => 'The name you assigned to the project when created in Google API Console',
         'client_id_comment'    => 'You can find the Client ID on the project page in Google API Console',
@@ -56,6 +57,7 @@ return [
         'profile_id_comment'   => 'You can find it on the Google Analytics Admin / View Settings page',
         'gapi_key_comment'     => 'The private key file you downloaded from Google API Console',
         'tracking_id_comment'  => 'You can find the Tracking ID on the Admin / Property Settings page',
+        'anonymize_ip_comment' => 'Activate the IP anonymization for visitors',
         'domain_name_comment'  => 'Specify the domain name you are going to track',
     ],
 ];
