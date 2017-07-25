@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=7.0",
         "guzzlehttp/guzzle": "~6.0",
         "google/apiclient": "^2.0.0@RC"
     }
