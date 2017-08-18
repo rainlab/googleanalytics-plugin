@@ -8,3 +8,4 @@
 1.1.0: !!! Updated to the latest Google API library
 1.2.0: Update Guzzle library to version 6.0
 1.2.1: Update the plugin compatibility with RC8 Google API client
+1.2.2: Improve translations, bump version requirement to PHP 7
