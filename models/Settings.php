@@ -27,8 +27,8 @@ class Settings extends Model
      * Validation rules
      */
     public $rules = [
-        'gapi_key'   => 'required',
-        'profile_id'   => 'required'
+        'gapi_key'   => 'required_with:profile_id',
+        'profile_id'   => 'required_with:gapi_key'
     ];
 
     public function initSettingsData()
