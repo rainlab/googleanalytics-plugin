@@ -58,6 +58,6 @@ return [
         'gapi_key_comment'     => 'Yksityinen avain, jonka latasit Google API Konsolista',
         'tracking_id_comment'  => 'Löydät Seuranta ID:n Admin / Property Settings -sivulta',
         'anonymize_ip_comment' => 'Aktivoi IP anonymisointi vierailijoille',
-        'domain_name_comment'  => 'Määrittele verkkotunnus, jota aioit seurata',
+        'domain_name_comment'  => 'Määrittele verkkotunnus, jota aiot seurata',
     ],
 ];
