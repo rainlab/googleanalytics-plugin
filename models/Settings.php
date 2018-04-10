@@ -35,5 +35,6 @@ class Settings extends Model
     {
         $this->domain_name = 'auto';
         $this->anonymize_ip = false;
+        $this->force_ssl = false;
     }
 }

@@ -32,3 +32,10 @@ tabs:
             span: left
             label: rainlab.googleanalytics::lang.settings.anonymize_ip
             commentAbove: rainlab.googleanalytics::lang.settings.anonymize_ip_comment
+
+        force_ssl:
+            tab: rainlab.googleanalytics::lang.strings.tracking
+            type: switch
+            span: left
+            label: rainlab.googleanalytics::lang.settings.force_ssl
+            commentAbove: rainlab.googleanalytics::lang.settings.force_ssl_comment
