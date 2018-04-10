@@ -59,5 +59,8 @@ return [
         'tracking_id_comment'  => 'You can find the Tracking ID on the Admin / Property Settings page',
         'anonymize_ip_comment' => 'Activate the IP anonymization for visitors',
         'domain_name_comment'  => 'Specify the domain name you are going to track',
+
+        'force_ssl'            => 'Force SSL',
+        'force_ssl_comment'    => 'Always use SSL to send data to Google',
     ],
 ];

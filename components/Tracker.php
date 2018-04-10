@@ -27,4 +27,9 @@ class Tracker extends ComponentBase
     {
         return Settings::get('anonymize_ip');
     }
+
+    public function forceSSL()
+    {
+        return Settings::get('force_ssl');
+    }
 }
