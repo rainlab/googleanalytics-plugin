@@ -9,18 +9,18 @@
             data-full-width="1"
         >
             <ul>
-            <?php if (count($rows)): ?>
+                <?php if ($rows && count($rows)): ?>
                 <?php foreach ($rows as $row): ?>
-                    <li><?= e($row[0]) ?> <span><?= $row[1] ?></span></li>
+                <li><?= e($row[0]) ?> <span><?= $row[1] ?></span></li>
                 <?php endforeach ?>
-            <?php endif; ?>
+                <?php endif ?>
             </ul>
         </div>
-
-        <?php if ($this->property('displayDescription')): ?>
-            <p class="report-description"><?= e(trans('rainlab.googleanalytics::lang.widgets.description_browsers')) ?></p>
-        <?php endif ?>
     <?php else: ?>
-        <p class="flash-message static warning"><?= e($error) ?></p>
+    <p class="flash-message static warning"><?= e($error) ?></p>
+    <?php endif ?>
+
+    <?php if ($this->property('displayDescription')): ?>
+    <p class="report-description"><?= e(trans('rainlab.googleanalytics::lang.widgets.description_browsers')) ?></p>
     <?php endif ?>
 </div>
