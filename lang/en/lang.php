@@ -28,8 +28,9 @@ return [
     'permissions' => [
         'tab'      => 'Google Analytics Plugin',
         'settings' => 'Settings access',
+        'widgets'  => 'View dashboard widgets',
     ],
-    'strings'     => [
+    'strings' => [
         'plugin_desc'    => 'Provides the Google Analytics tracking and reporting.',
         'notconfigured'  => 'Google Analytics API access is not configured. Please configure it on the System / Settings / Google Analytics page.',
         'keynotuploaded' => 'Google Analytics API private key is not uploaded. Please configure Google Analytics access on the System / Settings / Google Analytics page.',
@@ -40,9 +41,9 @@ return [
         'page_url'       => 'Page URL',
         'pageviews'      => 'Pageviews',
         'current'        => 'Current',
-        'goal'           => 'Goal'
+        'goal'           => 'Goal',
     ],
-    'settings'    => [
+    'settings' => [
         'project_name'         => 'Google API Project name',
         'client_id'            => 'Google API Client ID',
         'app_email'            => 'Email address',
@@ -59,7 +60,6 @@ return [
         'tracking_id_comment'  => 'You can find the Tracking ID on the Admin / Property Settings page',
         'anonymize_ip_comment' => 'Activate the IP anonymization for visitors',
         'domain_name_comment'  => 'Specify the domain name you are going to track',
-
         'force_ssl'            => 'Force SSL',
         'force_ssl_comment'    => 'Always use SSL to send data to Google',
     ],

@@ -28,6 +28,10 @@ class Plugin extends PluginBase
             'rainlab.googleanalytics.access_settings' => [
                 'tab'   => 'rainlab.googleanalytics::lang.permissions.tab',
                 'label' => 'rainlab.googleanalytics::lang.permissions.settings'
+            ],
+            'rainlab.googleanalytics.view_widgets' => [
+                'tab'   => 'rainlab.googleanalytics::lang.permissions.tab',
+                'label' => 'rainlab.googleanalytics::lang.permissions.widgets'
             ]
         ];
     }
@@ -35,25 +39,30 @@ class Plugin extends PluginBase
     public function registerReportWidgets()
     {
         return [
-            'RainLab\GoogleAnalytics\ReportWidgets\TrafficOverview'=>[
-                'label'   => 'Google Analytics traffic overview',
-                'context' => 'dashboard'
+            'RainLab\GoogleAnalytics\ReportWidgets\TrafficOverview' => [
+                'label'       => 'Google Analytics traffic overview',
+                'context'     => 'dashboard',
+                'permissions' => ['rainlab.googleanalytics.view_widgets']
             ],
-            'RainLab\GoogleAnalytics\ReportWidgets\TrafficSources'=>[
-                'label'   => 'Google Analytics traffic sources',
-                'context' => 'dashboard'
+            'RainLab\GoogleAnalytics\ReportWidgets\TrafficSources' => [
+                'label'       => 'Google Analytics traffic sources',
+                'context'     => 'dashboard',
+                'permissions' => ['rainlab.googleanalytics.view_widgets']
             ],
-            'RainLab\GoogleAnalytics\ReportWidgets\Browsers'=>[
-                'label'   => 'Google Analytics browsers',
-                'context' => 'dashboard'
+            'RainLab\GoogleAnalytics\ReportWidgets\Browsers' => [
+                'label'       => 'Google Analytics browsers',
+                'context'     => 'dashboard',
+                'permissions' => ['rainlab.googleanalytics.view_widgets']
             ],
-            'RainLab\GoogleAnalytics\ReportWidgets\TrafficGoal'=>[
-                'label'   => 'Google Analytics traffic goal',
-                'context' => 'dashboard'
+            'RainLab\GoogleAnalytics\ReportWidgets\TrafficGoal' => [
+                'label'       => 'Google Analytics traffic goal',
+                'context'     => 'dashboard',
+                'permissions' => ['rainlab.googleanalytics.view_widgets']
             ],
-            'RainLab\GoogleAnalytics\ReportWidgets\TopPages'=>[
-                'label'   => 'Google Analytics top pages',
-                'context' => 'dashboard'
+            'RainLab\GoogleAnalytics\ReportWidgets\TopPages' => [
+                'label'       => 'Google Analytics top pages',
+                'context'     => 'dashboard',
+                'permissions' => ['rainlab.googleanalytics.view_widgets']
             ]
         ];
     }
