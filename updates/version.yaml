@@ -11,3 +11,4 @@
 1.2.2: Improve translations, bump version requirement to PHP 7
 1.2.3: Added a switch for forceSSL
 1.2.4: Added permission for dashboard widgets. Added Turkish, Spanish and Estonian translations.
+1.2.5: Fixed issues with PHP 7.4 compatibility.
