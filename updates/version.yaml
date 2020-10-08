@@ -12,3 +12,4 @@
 1.2.3: Added a switch for forceSSL
 1.2.4: Added permission for dashboard widgets. Added Turkish, Spanish and Estonian translations.
 1.2.5: Fixed issues with PHP 7.4 compatibility.
+1.3.0: !!! Upgraded tracker code to Universal Analytics (gtag.js)
