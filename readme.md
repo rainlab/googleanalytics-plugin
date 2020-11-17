@@ -1,3 +1,5 @@
+> ⚠️ WARNING - This plugin works with GA version 3 and NOT version 4 ⚠️ 
+
 # Google Analytics integration plugin
 
 This plugin adds Google Analytics tracking and reporting features to the [OctoberCMS](http://octobercms.com).
