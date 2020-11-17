@@ -1,4 +1,5 @@
 > ⚠️ WARNING - This plugin works with GA version 3 and NOT version 4 ⚠️ 
+> To join the GA4 discussion and keep in the loop see here: https://github.com/rainlab/googleanalytics-plugin/issues/101
 
 # Google Analytics integration plugin
 

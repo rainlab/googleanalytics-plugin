@@ -1,3 +1,6 @@
+> ⚠️ WARNING - This plugin works with GA version 3 and NOT version 4 ⚠️ 
+> To join the GA4 discussion and keep in the loop see here: https://github.com/rainlab/googleanalytics-plugin/issues/101
+
 # Upgrade guide
 
 - [Upgrading to 1.1 from 1.0](#upgrade-1.1)
