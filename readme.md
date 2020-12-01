@@ -81,3 +81,15 @@ To add the plugin's tracking code to your website just drop the Google Analytics
     ```
 
 1. Restart Apache
+
+### Pops up message simply saying "error" when trying to add the json key file.
+
+Your first thought might be to try and upload a .json file using the media manager to see if it is a general issue with October. When that fails as well, further research might reveal that you need to edit /config/cms.php to add json as an accepted extension:
+
+```
+    'fileDefinitions' => [
+        'assetExtensions' => array_merge(\October\Rain\Filesystem\Definitions::get('assetExtensions'), ['json']),
+    ],
+```
+
+But this is not necessary! The true culprit is more likely to be your adblocker (for example, Chrome uBlock origin, or Firefox's own built-in algos). Disable it and you should be able to upload the json private key without any modifications to OctoberCMS config files.
