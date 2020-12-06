@@ -82,7 +82,7 @@ To add the plugin's tracking code to your website just drop the Google Analytics
 
 1. Restart Apache
 
-### Pops up message simply saying "error" when trying to add the json key file.
+### Popup message simply saying "error" when trying to add the JSON key file.
 
 Your first thought might be to try and upload a .json file using the media manager to see if it is a general issue with October. When that fails as well, further research might reveal that you need to edit /config/cms.php to add json as an accepted extension:
 
