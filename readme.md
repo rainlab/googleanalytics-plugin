@@ -81,3 +81,7 @@ To add the plugin's tracking code to your website just drop the Google Analytics
     ```
 
 1. Restart Apache
+
+### Popup message simply saying "error" when trying to add the JSON key file.
+
+Some ad-blockers (such as Chrome's uBlock Origin extension or Firefox's own built-in algorithms) may prevent the uploading of the JSON file key. Disabling these, or whitelisting the October CMS website, may resolve this issue for you.
