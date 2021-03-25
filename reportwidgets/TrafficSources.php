@@ -33,7 +33,7 @@ class TrafficSources extends ReportWidgetBase
         return [
             'title' => [
                 'title'             => 'backend::lang.dashboard.widget_title_label',
-                'default'           => e(trans('rainlab.googleanalytics::lang.widgets.title_traffic_sources')),
+                'default'           => 'rainlab.googleanalytics::lang.widgets.title_traffic_sources',
                 'type'              => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
