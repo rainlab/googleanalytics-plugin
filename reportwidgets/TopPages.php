@@ -33,7 +33,7 @@ class TopPages extends ReportWidgetBase
         return [
             'title' => [
                 'title'             => 'backend::lang.dashboard.widget_title_label',
-                'default'           => e(trans('rainlab.googleanalytics::lang.widgets.title_toppages')),
+                'default'           => 'rainlab.googleanalytics::lang.widgets.title_toppages',
                 'type'              => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'

@@ -33,7 +33,7 @@ class TrafficOverview extends ReportWidgetBase
         return [
             'title' => [
                 'title'             => 'backend::lang.dashboard.widget_title_label',
-                'default'           => e(trans('rainlab.googleanalytics::lang.widgets.title_traffic_overview')),
+                'default'           => 'rainlab.googleanalytics::lang.widgets.title_traffic_overview',
                 'type'              => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
