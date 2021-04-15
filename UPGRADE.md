@@ -18,3 +18,5 @@ The Profile ID number has also changed, follow these settings to find the new on
 1. In a new tab, navigate to the main [Google Analytics site](https://www.google.com/analytics/web/) and select the property you want to track.
 1. Click the **Admin** main menu tab again and select **View > View Settings** from the menu. *Copy to your clipboard* the Profile ID (should be a number).
 1. Paste this number in the **Analytics View/Profile ID number** field in the October back-end settings form.
+
+> **Note**: This plugin does not support GAv4. If you are having issues creating an account, use the **Show advanced options** link in the GA Account creation and the **Create a Universal Analytics property** switch.

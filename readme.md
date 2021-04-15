@@ -1,6 +1,8 @@
-# Google Analytics integration plugin
+# Google Analytics v3 integration plugin
 
 This plugin adds Google Analytics tracking and reporting features to the [OctoberCMS](http://octobercms.com).
+
+> **Note**: This plugin does not support GAv4. If you are having issues creating an account, use the **Show advanced options** link in the GA Account creation and the **Create a Universal Analytics property** switch.
 
 ## Configuration
 
@@ -83,4 +85,4 @@ To add the plugin's tracking code to your website just drop the Google Analytics
 
 ### Popup message simply saying "error" when trying to add the JSON key file.
 
-Some ad-blockers (such as Chrome's uBlock Origin extension or Firefox's own built-in algorithms) may prevent the uploading of the JSON file key. Disabling these, or whitelisting the October CMS website, may resolve this issue for you.
+Some ad-blockers, such as Chrome's uBlock Origin extension or Firefox's own built-in algorithms, may prevent the uploading of the JSON file key. Disabling these, or whitelisting the October CMS website, may resolve this issue for you.
