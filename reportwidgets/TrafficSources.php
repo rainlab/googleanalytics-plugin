@@ -1,7 +1,9 @@
 <?php namespace RainLab\GoogleAnalytics\ReportWidgets;
 
-use Backend\Classes\ReportWidgetBase;
 use RainLab\GoogleAnalytics\Classes\Analytics;
+use Google\Analytics\Data\V1beta\DateRange;
+use Google\Analytics\Data\V1beta\Dimension;
+use Google\Analytics\Data\V1beta\Metric;
 use ApplicationException;
 use Exception;
 
@@ -11,7 +13,7 @@ use Exception;
  * @package backend
  * @author Alexey Bobkov, Samuel Georges
  */
-class TrafficSources extends ReportWidgetBase
+class TrafficSources extends WidgetBase
 {
     /**
      * Renders the widget.
@@ -77,21 +79,45 @@ class TrafficSources extends ReportWidgetBase
     protected function loadData()
     {
         $days = $this->property('days');
-        if (!$days)
+        if (!$days) {
             throw new ApplicationException('Invalid days value: '.$days);
+        }
 
-        $obj = Analytics::instance();
-        $data = $obj->service->data_ga->get(
-            $obj->viewId,
-            $days.'daysAgo',
-            'today',
-            'ga:visits',
-            ['dimensions' => 'ga:source', 'sort' => '-ga:visits']
-        );
+        $number = $this->property('number');
+        if (!$number) {
+            throw new ApplicationException('Invalid traffic sources number value: '.$days);
+        }
 
-        $rows = $data->getRows() ?: [];
-
-        $this->vars['rows'] = array_slice($rows, 0, $this->property('number'));
-        $this->vars['total'] = $data->getTotalsForAllResults()['ga:visits'];
+        $this->loadCached(['days', 'number'], ['rows', 'total'], function($widget) use ($days, $number) {
+            $obj = Analytics::instance();
+            $data = $obj->client->runReport([
+                'property' => 'properties/' . $obj->propertyId,
+                'dateRanges' => [
+                    new DateRange([
+                        'start_date' => $days.'daysAgo',
+                        'end_date' => 'today',
+                    ]),
+                ],
+                'dimensions' => [new Dimension(['name' => 'firstUserSource'])],
+                'metrics' => [new Metric(['name' => 'totalUsers'])]
+            ]);
+    
+            $rows = [];
+            $total = 0;
+    
+            foreach ($data->getRows() as $row) {
+                $value = $row->getMetricValues()[0]->getValue();
+    
+                $rows[] = [
+                    $row->getDimensionValues()[0]->getValue(),
+                    $value
+                ];
+    
+                $total += $value;
+            }
+    
+            $widget->vars['rows'] = array_slice($rows, 0, $number);
+            $widget->vars['total'] = $total;
+        });
     }
 }

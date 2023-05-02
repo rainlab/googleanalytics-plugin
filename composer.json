@@ -18,7 +18,13 @@
         "php": ">=7.0",
         "composer/installers": "~1.0",
         "guzzlehttp/guzzle": "~6.0|~7.0",
-        "google/apiclient": "^2.4",
-        "psr/cache": "^1.0"
+        "google/apiclient": "^2.12.1",
+        "psr/cache": "^1.0",
+        "google/analytics-data": "^0.9.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
     }
 }

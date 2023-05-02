@@ -1,72 +1,75 @@
-# Google Analytics v3 integration plugin
+# Google Analytics 4 integration plugin
 
-This plugin adds Google Analytics tracking and reporting features to the [OctoberCMS](http://octobercms.com).
+This plugin adds Google Analytics 4 tracking and reporting features to [October CMS](https://octobercms.com). This plugin requires October CMS 3.3 or above.
 
-> **Note**: This plugin does not support GAv4. If you are having issues creating an account, use the **Show advanced options** link in the GA Account creation and the **Create a Universal Analytics property** switch.
+> **Note**: This plugin does not support Universal Analytics.
 
-## Configuration
+> **Important**: this plugin requires the [`bcmath` PHP extension](https://www.php.net/manual/en/book.bc.php). It is required by the Google PHP API.
 
-### Configure the API
+If you are using October CMS v1 or v2, install v1.3 of the plugin with the following command:
 
-To get started using Google Analytics API, you need to first [create or select a project in the Google Developers Console and enable the API](https://console.developers.google.com/start/api?id=analytics&credential=client_key). Using this link guides you through the process and activates the Google Analytics API automatically.
+```
+composer require rainlab/googleanalytics-plugin "^1.3"
+```
 
-Alternatively, you can activate the Google Analytics API yourself in the Developers Console by doing the following:
+## Configuring the Google Analytics and Google Cloud accounts
 
-1. Open the [Credentials page](https://console.developers.google.com/project/_/apiui/credential).
+To use the plugin, you will need to have a Google Cloud project with a service account, as well as the Google Analytics Data API enabled for that project. To begin, sign into the [Google Cloud Console](https://console.cloud.google.com/) and create or select your project.
 
-1. Select the **Overview** menu item and enable the **Analytics API**.
+To create a service account in a Google Cloud project:
 
-In either case, you should end up on the **Credentials** page and can create your project's credentials from here.
+* Open the [Credentials page](https://console.developers.google.com/project/_/apiui/credential) and select your project.
+* Click the **Create credentials** button and select **Service account**.
+* Enter a name for the service account, e.g. "October CMS GA". Enter an ID for the service account, e.g. "october-cms-ga".
+* Click **Done**. This will create the service account and redirect back to the account list.
 
-#### Create a client ID
+To generate and download a private key file for the service account:
 
-1. Open the [**Service accounts** section](https://console.developers.google.com/projectselector/permissions/serviceaccounts) of the Developers Console's **Permissions** page.
+* Click the account you just created in the Service Accounts list.
+* Click **Keys** in the top menu.
+* Click **Add Key** / **Create new key** and select **JSON**. This will download the JSON file. You will need this file later to configure the plugin.
 
-1. Click **Create service account**.
+The plugin requires Google Analytics Data API to be enabled for the Google Cloud project. This is needed to fetch the analytics data and display it on the October CMS dashboard. To enable the API:
 
-1. In the **Create service account** window, type a name for the service account, eg: `OctoberCMS Analytics`.
+* Return to the project dashboard page in the Google Cloud Console.
+* Click **Enabled APIs & services** in the sidebar.
+* Click **Enable APIs and services** in the top menu.
+* Search for "Google Analytics Data API".
+* Click the found API and enable it.
 
-1. Place a tick in the box  **Furnish a new private key** and select **JSON** for the **Key type**.
+You can alternatively use [this link](https://console.cloud.google.com/apis/enableflow?apiid=analyticsdata.googleapis.com&credential=client_key), but make sure you're enabling the API for the correct project.
 
-1. Then, click **Create**.
+Next, you need to give the service account access to your Google Analytics account:
 
-1. A `.json` file will be generated, this is the private key for your account. Accept the download and save it to your computer.
+* In the [Google Cloud dashboard](https://console.cloud.google.com/home/dashboard) select your project, click **APIs & Services** and then **Credentials** in the sidebar.
+* In the Service Accounts list, copy email of the service account you created.
+* Go to [Google Analytics](https://analytics.google.com/) and select a GA4 property you want to work with.
+* In the left-hand menu, click **Admin**.
+* In the **Property** column, click on **Property Access Management**.
+* Click the **Add +** button and enter the email address of the service account.
+* Select the **Viewer** permission for the service account.
+* Click the **Add** button to save the changes.
 
-1. Click **Close**.
+## Configuring the plugin
 
-1. You should see an email ending with `iam.gserviceaccount.com`, if not select the **Permissions tab**. Copy this address to your clipboard.
+* Open your October CMS installation Administration Area and go to **Settings** / **Google Analytics**.
+* Upload the JSON file you downloaded before to the **Private key** field.
+* To find the **Analytics Property ID** - go to your [Google Analytics](https://analytics.google.com/) property's **Admin** page and click **Property Settings**. Copy the **Property ID** value from the page and paste it into the corresponding field on the plugin settings page.
+* To find the **Measurement ID** value you first need to create a **Data Stream** on the Admin page of your Google Analytics 4 property. After creating a stream, click it in the stream list and copy the **Measurement ID** value. Paste it into the corresponding field on the plugin settings page.
+* Save the settings.
 
-### Configure Google Analytics
+## Installing the Google Analytics tracking code
 
-1. In a new tab, navigate to the main [Google Analytics site](https://www.google.com/analytics/web/) and select the property you want to track.
+You can use Google Tag Manager to install the tracker code. Below is an explanation how to install the tracker code manually.
 
-1. Click the **Admin** main menu tab at the top. Select the **Property > User Management** menu item.
+* Drop the Google Analytics Tracker component to your CMS layout.
+* Add the following code to the layout immediately after the <head> element:
 
-1. *Paste the email address from the clipboard* in to the field **Add permissions for** and make sure the permission is set to **Read & Analyse**. Click **Add**.
+```
+{% component 'googleTracker' %}
+```
 
-1. Click the **Admin** main menu tab again and select **View > View Settings** from the menu. *Copy to your clipboard* the Profile ID (should be a number).
-
-### Configure October back-end area
-
-1. Open your October back-end administration area and open **Settings > Google Analytics**.
-
-1. *Paste the Account ID from the clipboard* in to the field **Analytics View/Profile ID number**.
-
-1. Upload the previously downloaded `.json` private key file to the **Private key** field.
-
-1. Specify the **Tracking ID** (eg `UA-12312312-3`) and **Domain name** values if you are going to use the plugin's built-in tracking component. To find this code, select **Admin > Property > Property Settings** from the Google Analytics menu.
-
-1. If Tracking is not working initially, enter the value `auto` for the **Domain name** field. This is a fix for newborn Google Analytics accounts.
-
-## Adding the tracking code
-
-Using the tracking code provided by the plugin is optional - the reporting part does not depend on whether you track your traffic with the built-in tracker or with a custom code generated by Google Analytics tools.
-
-To add the plugin's tracking code to your website just drop the Google Analytics Tracker component to your CMS layout and add this code to the layout code after the page tag:
-
-    {% page %}
-    {% component 'googleTracker' %}
-
+After installing the tracker, you can add Google Analytics dashboard widgets and preview the traffic statistics without leaving October CMS.
 
 ## Troubleshooting
 

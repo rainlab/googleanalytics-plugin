@@ -1,6 +1,7 @@
 # Upgrade guide
 
 - [Upgrading to 1.1 from 1.0](#upgrade-1.1)
+- [Upgrading to 2.0 from 1.3](#upgrade-2.0)
 
 <a name="upgrade-1.1"></a>
 ## Upgrading To 1.1
@@ -19,4 +20,7 @@ The Profile ID number has also changed, follow these settings to find the new on
 1. Click the **Admin** main menu tab again and select **View > View Settings** from the menu. *Copy to your clipboard* the Profile ID (should be a number).
 1. Paste this number in the **Analytics View/Profile ID number** field in the October back-end settings form.
 
-> **Note**: This plugin does not support GAv4. If you are having issues creating an account, use the **Show advanced options** link in the GA Account creation and the **Create a Universal Analytics property** switch.
+<a name="upgrade-2.0"></a>
+## Upgrading To 2.0
+
+Google will stop processing data for Universal Google Analytics on July 1, 2023. You will need to create a Google Analytics 4 property, upgrade the plugin, and configure it to access the new property. Refer to the plugin documentation for a detailed description of the configuration process.

@@ -9,16 +9,16 @@ fields:
 
     profile_id:
         span: right
-        label: rainlab.googleanalytics::lang.settings.profile_id
-        commentAbove: rainlab.googleanalytics::lang.settings.profile_id_comment
+        label: rainlab.googleanalytics::lang.settings.property_id
+        commentAbove: rainlab.googleanalytics::lang.settings.property_id_comment
 
 tabs:
     fields:
         tracking_id:
             tab: rainlab.googleanalytics::lang.strings.tracking
             span: left
-            label: rainlab.googleanalytics::lang.settings.tracking_id
-            commentAbove: rainlab.googleanalytics::lang.settings.tracking_id_comment
+            label: rainlab.googleanalytics::lang.settings.measurement_id
+            commentAbove: rainlab.googleanalytics::lang.settings.measurement_id_comment
 
         domain_name:
             tab: rainlab.googleanalytics::lang.strings.tracking

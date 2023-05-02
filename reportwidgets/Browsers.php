@@ -1,6 +1,8 @@
 <?php namespace RainLab\GoogleAnalytics\ReportWidgets;
 
-use Backend\Classes\ReportWidgetBase;
+use Google\Analytics\Data\V1beta\DateRange;
+use Google\Analytics\Data\V1beta\Dimension;
+use Google\Analytics\Data\V1beta\Metric;
 use RainLab\GoogleAnalytics\Classes\Analytics;
 use ApplicationException;
 use Exception;
@@ -11,7 +13,7 @@ use Exception;
  * @package backend
  * @author Alexey Bobkov, Samuel Georges
  */
-class Browsers extends ReportWidgetBase
+class Browsers extends WidgetBase
 {
     /**
      * Renders the widget.
@@ -67,11 +69,35 @@ class Browsers extends ReportWidgetBase
     protected function loadData()
     {
         $days = $this->property('days');
-        if (!$days)
+        if (!$days) {
             throw new ApplicationException('Invalid days value: '.$days);
+        }
 
-        $obj = Analytics::instance();
-        $data = $obj->service->data_ga->get($obj->viewId, $days.'daysAgo', 'today', 'ga:visits', ['dimensions'=>'ga:browser', 'sort'=>'-ga:visits']);
-        $this->vars['rows'] = $data->getRows();
+        $this->loadCached(['days'], ['rows'], function($widget) use ($days) {
+            $obj = Analytics::instance();
+
+            $data = $obj->client->runReport([
+                'property' => 'properties/' . $obj->propertyId,
+                'dateRanges' => [
+                    new DateRange([
+                        'start_date' => $days.'daysAgo',
+                        'end_date' => 'today',
+                    ]),
+                ],
+                'dimensions' => [new Dimension(['name' => 'browser'])],
+                'metrics' => [new Metric(['name' => 'totalUsers'])]
+            ]);
+    
+            $rows = [];
+    
+            foreach ($data->getRows() as $row) {
+                $rows[] = [
+                    $row->getDimensionValues()[0]->getValue(),
+                    $row->getMetricValues()[0]->getValue()
+                ];
+            }
+
+            $widget->vars['rows'] = $rows;
+        });
     }
 }

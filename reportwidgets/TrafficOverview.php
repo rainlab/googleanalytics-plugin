@@ -1,7 +1,9 @@
 <?php namespace RainLab\GoogleAnalytics\ReportWidgets;
 
-use Backend\Classes\ReportWidgetBase;
 use RainLab\GoogleAnalytics\Classes\Analytics;
+use Google\Analytics\Data\V1beta\DateRange;
+use Google\Analytics\Data\V1beta\Dimension;
+use Google\Analytics\Data\V1beta\Metric;
 use ApplicationException;
 use Exception;
 
@@ -11,7 +13,7 @@ use Exception;
  * @package backend
  * @author Alexey Bobkov, Samuel Georges
  */
-class TrafficOverview extends ReportWidgetBase
+class TrafficOverview extends WidgetBase
 {
     /**
      * Renders the widget.
@@ -49,36 +51,47 @@ class TrafficOverview extends ReportWidgetBase
 
     protected function loadData()
     {
-        $obj = Analytics::instance();
-
         $days = $this->property('days');
         if (!$days) {
             throw new ApplicationException('Invalid days value: '.$days);
         }
 
-        $data = $obj->service->data_ga->get(
-            $obj->viewId,
-            $days.'daysAgo',
-            'today',
-            'ga:visits',
-            ['dimensions' => 'ga:date']
-        );
-
-        $rows = $data->getRows();
-        if (!$rows) {
-            throw new ApplicationException('No traffic found yet.');
-        }
-
-        $points = [];
-        foreach ($rows as $row) {
-            $point = [
-                strtotime($row[0])*1000,
-                $row[1]
-            ];
-
-            $points[] = $point;
-        }
-
-        $this->vars['rows'] = str_replace('"', '', substr(substr(json_encode($points), 1), 0, -1));
+        $this->loadCached(['days', 'goal'], ['rows'], function($widget) use ($days) {
+            $obj = Analytics::instance();
+            $data = $obj->client->runReport([
+                'property' => 'properties/' . $obj->propertyId,
+                'dateRanges' => [
+                    new DateRange([
+                        'start_date' => $days.'daysAgo',
+                        'end_date' => 'today',
+                    ]),
+                ],
+                'dimensions' => [new Dimension(['name' => 'date'])],
+                'metrics' => [new Metric(['name' => 'screenPageViews'])]
+            ]);
+    
+            $rows = $data->getRows();
+            if (!$rows) {
+                throw new ApplicationException('No traffic found yet.');
+            }
+    
+            $points = [];
+            foreach ($rows as $row) {
+                $date = $row->getDimensionValues()[0]->getValue();
+                $views = $row->getMetricValues()[0]->getValue();
+                $point = [
+                    strtotime($date)*1000,
+                    $views
+                ];
+    
+                $points[] = $point;
+            }
+    
+            usort($points, function($a, $b) {
+                return $a[0] - $b[0];
+            });
+    
+            $widget->vars['rows'] = str_replace('"', '', substr(substr(json_encode($points), 1), 0, -1));
+        });
     }
 }

@@ -1,7 +1,9 @@
 <?php namespace RainLab\GoogleAnalytics\ReportWidgets;
 
-use Backend\Classes\ReportWidgetBase;
 use RainLab\GoogleAnalytics\Classes\Analytics;
+use Google\Analytics\Data\V1beta\DateRange;
+use Google\Analytics\Data\V1beta\Dimension;
+use Google\Analytics\Data\V1beta\Metric;
 use ApplicationException;
 use Exception;
 
@@ -11,7 +13,7 @@ use Exception;
  * @package backend
  * @author Alexey Bobkov, Samuel Georges
  */
-class TopPages extends ReportWidgetBase
+class TopPages extends WidgetBase
 {
     /**
      * Renders the widget.
@@ -56,19 +58,42 @@ class TopPages extends ReportWidgetBase
     protected function loadData()
     {
         $days = $this->property('days');
-        if (!$days)
+        if (!$days) {
             throw new ApplicationException('Invalid days value: '.$days);
+        }
 
-        $obj = Analytics::instance();
-        $data = $obj->service->data_ga->get($obj->viewId, $days.'daysAgo', 'today', 'ga:pageviews', ['dimensions' => 'ga:pagePath', 'sort' => '-ga:pageviews']);
-
-        $rows = $data->getRows() ?: [];
-        $rows = $this->vars['rows'] = array_slice($rows, 0, $this->property('number'));
-
-        $total = 0;
-        foreach ($rows as $row)
-            $total += $row[1];
-
-        $this->vars['total'] = $total;
+        $numRows = $this->property('number');
+        $this->loadCached(['number'], ['rows', 'total'], function($widget) use ($numRows, $days) {
+            $obj = Analytics::instance();
+    
+            $data = $obj->client->runReport([
+                'property' => 'properties/' . $obj->propertyId,
+                'dateRanges' => [
+                    new DateRange([
+                        'start_date' => $days.'daysAgo',
+                        'end_date' => 'today',
+                    ]),
+                ],
+                'dimensions' => [new Dimension(['name' => 'pagePath'])],
+                'metrics' => [new Metric(['name' => 'screenPageViews'])]
+            ]);
+    
+            $rows = [];
+            $total = 0;
+    
+            foreach ($data->getRows() as $row) {
+                $value = $row->getMetricValues()[0]->getValue();
+    
+                $rows[] = [
+                    $row->getDimensionValues()[0]->getValue(),
+                    $value
+                ];
+    
+                $total += $value;
+            }
+    
+            $widget->vars['rows'] = array_slice($rows, 0, $numRows);
+            $widget->vars['total'] = $total;
+        });
     }
 }
