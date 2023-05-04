@@ -26,7 +26,7 @@ class WidgetBase extends ReportWidgetBase
                 }
                 return;
             }
-            catch (Exception) {}
+            catch (Exception $e) {}
         }
 
         $callback($this);
