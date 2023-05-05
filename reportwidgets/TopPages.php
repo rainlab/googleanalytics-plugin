@@ -16,7 +16,7 @@ use Exception;
 class TopPages extends WidgetBase
 {
     /**
-     * Renders the widget.
+     * render the widget
      */
     public function render()
     {
@@ -30,31 +30,37 @@ class TopPages extends WidgetBase
         return $this->makePartial('widget');
     }
 
+    /**
+     * defineProperties
+     */
     public function defineProperties()
     {
         return [
             'title' => [
-                'title'             => 'backend::lang.dashboard.widget_title_label',
-                'default'           => 'rainlab.googleanalytics::lang.widgets.title_toppages',
-                'type'              => 'string',
+                'title' => 'backend::lang.dashboard.widget_title_label',
+                'default' => 'rainlab.googleanalytics::lang.widgets.title_toppages',
+                'type' => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
-                'title'             => 'rainlab.googleanalytics::lang.widgets.days',
-                'default'           => '7',
-                'type'              => 'string',
+                'title' => 'rainlab.googleanalytics::lang.widgets.days',
+                'default' => '7',
+                'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'number' => [
-                'title'             => 'rainlab.googleanalytics::lang.widgets.toppages_number',
-                'default'           => '5',
-                'type'              => 'string',
+                'title' => 'rainlab.googleanalytics::lang.widgets.toppages_number',
+                'default' => '5',
+                'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ]
         ];
     }
 
+    /**
+     * loadData
+     */
     protected function loadData()
     {
         $days = $this->property('days');
@@ -65,7 +71,7 @@ class TopPages extends WidgetBase
         $numRows = $this->property('number');
         $this->loadCached(['number'], ['rows', 'total'], function($widget) use ($numRows, $days) {
             $obj = Analytics::instance();
-    
+
             $data = $obj->client->runReport([
                 'property' => 'properties/' . $obj->propertyId,
                 'dateRanges' => [
@@ -77,21 +83,21 @@ class TopPages extends WidgetBase
                 'dimensions' => [new Dimension(['name' => 'pagePath'])],
                 'metrics' => [new Metric(['name' => 'screenPageViews'])]
             ]);
-    
+
             $rows = [];
             $total = 0;
-    
+
             foreach ($data->getRows() as $row) {
                 $value = $row->getMetricValues()[0]->getValue();
-    
+
                 $rows[] = [
                     $row->getDimensionValues()[0]->getValue(),
                     $value
                 ];
-    
+
                 $total += $value;
             }
-    
+
             $widget->vars['rows'] = array_slice($rows, 0, $numRows);
             $widget->vars['total'] = $total;
         });

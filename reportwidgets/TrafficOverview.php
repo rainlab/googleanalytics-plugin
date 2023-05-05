@@ -30,25 +30,31 @@ class TrafficOverview extends WidgetBase
         return $this->makePartial('widget');
     }
 
+    /**
+     * defineProperties
+     */
     public function defineProperties()
     {
         return [
             'title' => [
-                'title'             => 'backend::lang.dashboard.widget_title_label',
-                'default'           => 'rainlab.googleanalytics::lang.widgets.title_traffic_overview',
-                'type'              => 'string',
+                'title' => 'backend::lang.dashboard.widget_title_label',
+                'default' => 'rainlab.googleanalytics::lang.widgets.title_traffic_overview',
+                'type' => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
-                'title'             => 'rainlab.googleanalytics::lang.widgets.days',
-                'default'           => '30',
-                'type'              => 'string',
+                'title' => 'rainlab.googleanalytics::lang.widgets.days',
+                'default' => '30',
+                'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ]
         ];
     }
 
+    /**
+     * loadData
+     */
     protected function loadData()
     {
         $days = $this->property('days');
@@ -69,12 +75,12 @@ class TrafficOverview extends WidgetBase
                 'dimensions' => [new Dimension(['name' => 'date'])],
                 'metrics' => [new Metric(['name' => 'screenPageViews'])]
             ]);
-    
+
             $rows = $data->getRows();
             if (!$rows) {
                 throw new ApplicationException('No traffic found yet.');
             }
-    
+
             $points = [];
             foreach ($rows as $row) {
                 $date = $row->getDimensionValues()[0]->getValue();
@@ -83,14 +89,14 @@ class TrafficOverview extends WidgetBase
                     strtotime($date)*1000,
                     $views
                 ];
-    
+
                 $points[] = $point;
             }
-    
+
             usort($points, function($a, $b) {
                 return $a[0] - $b[0];
             });
-    
+
             $widget->vars['rows'] = str_replace('"', '', substr(substr(json_encode($points), 1), 0, -1));
         });
     }

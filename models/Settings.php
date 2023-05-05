@@ -3,34 +3,50 @@
 use October\Rain\Database\Model;
 
 /**
- * Google Analytics settings model
+ * Settings for Google Analytics
  *
- * @package system
+ * @package rainlab/googleanalytics
  * @author Alexey Bobkov, Samuel Georges
- *
  */
 class Settings extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
-    public $implement = ['System.Behaviors.SettingsModel'];
+    /**
+     * @var array implement
+     */
+    public $implement = [
+        \System\Behaviors\SettingsModel::class
+    ];
 
+    /**
+     * @var string settingsCode
+     */
     public $settingsCode = 'rainlab_googleanalytics_settings';
 
+    /**
+     * @var string settingsFields
+     */
     public $settingsFields = 'fields.yaml';
 
+    /**
+     * @var array attachOne
+     */
     public $attachOne = [
         'gapi_key' => ['System\Models\File', 'public' => false]
     ];
 
     /**
-     * Validation rules
+     * rules for validation
      */
     public $rules = [
         'gapi_key'   => 'required_with:profile_id',
         'profile_id'   => 'required_with:gapi_key'
     ];
 
+    /**
+     * initSettingsData
+     */
     public function initSettingsData()
     {
         $this->domain_name = 'auto';

@@ -1,4 +1,4 @@
-# Google Analytics 4 integration plugin
+# Google Analytics 4 Integration Plugin
 
 This plugin adds Google Analytics 4 tracking and reporting features to [October CMS](https://octobercms.com). This plugin requires October CMS 3.3 or above.
 
@@ -8,7 +8,7 @@ This plugin adds Google Analytics 4 tracking and reporting features to [October 
 
 If you are using October CMS v1 or v2, install v1.3 of the plugin with the following command:
 
-```
+```bash
 composer require rainlab/googleanalytics-plugin "^1.3"
 ```
 
@@ -65,7 +65,7 @@ You can use Google Tag Manager to install the tracker code. Below is an explanat
 * Drop the Google Analytics Tracker component to your CMS layout.
 * Add the following code to the layout immediately after the <head> element:
 
-```
+```yaml
 {% component 'googleTracker' %}
 ```
 
@@ -89,3 +89,7 @@ After installing the tracker, you can add Google Analytics dashboard widgets and
 ### Popup message simply saying "error" when trying to add the JSON key file.
 
 Some ad-blockers, such as Chrome's uBlock Origin extension or Firefox's own built-in algorithms, may prevent the uploading of the JSON file key. Disabling these, or whitelisting the October CMS website, may resolve this issue for you.
+
+### License
+
+This plugin is an official extension of the October CMS platform and is free to use if you have a platform license. See [EULA license](https://octobercms.com/eula) for more details.

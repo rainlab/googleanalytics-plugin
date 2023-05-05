@@ -5,9 +5,14 @@ use Backend\Classes\ReportWidgetBase;
 use Exception;
 use Cache;
 
+/**
+ * WidgetBase
+ */
 class WidgetBase extends ReportWidgetBase
 {
-
+    /**
+     * loadCached data
+     */
     protected function loadCached(array $keyProperties, array $pageVars, callable $callback)
     {
         $obj = Analytics::instance();
@@ -26,7 +31,9 @@ class WidgetBase extends ReportWidgetBase
                 }
                 return;
             }
-            catch (Exception $e) {}
+            catch (Exception $ex) {
+                // Do nothing
+            }
         }
 
         $callback($this);

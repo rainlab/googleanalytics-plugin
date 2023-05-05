@@ -1,25 +1,32 @@
 <?php namespace RainLab\GoogleAnalytics\Classes;
 
-use App;
-
 use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
-use ApplicationException;
 use RainLab\GoogleAnalytics\Models\Settings;
+use ApplicationException;
 
+/**
+ * Analytics
+ *
+ * @package rainlab/googleanalytics
+ * @author Alexey Bobkov, Samuel Georges
+ */
 class Analytics
 {
     use \October\Rain\Support\Traits\Singleton;
 
     /**
-     * @var Google\Analytics\Data\V1beta\BetaAnalyticsDataClient
+     * @var \Google\Analytics\Data\V1beta\BetaAnalyticsDataClient client
      */
     public $client;
 
     /**
-     * @var string Google Analytics Property ID
+     * @var string propertyId for Google Analytics
      */
     public $propertyId;
 
+    /**
+     * init
+     */
     protected function init()
     {
         $settings = Settings::instance();

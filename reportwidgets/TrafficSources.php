@@ -16,7 +16,7 @@ use Exception;
 class TrafficSources extends WidgetBase
 {
     /**
-     * Renders the widget.
+     * render the widget
      */
     public function render()
     {
@@ -30,52 +30,58 @@ class TrafficSources extends WidgetBase
         return $this->makePartial('widget');
     }
 
+    /**
+     * defineProperties
+     */
     public function defineProperties()
     {
         return [
             'title' => [
-                'title'             => 'backend::lang.dashboard.widget_title_label',
-                'default'           => 'rainlab.googleanalytics::lang.widgets.title_traffic_sources',
-                'type'              => 'string',
+                'title' => 'backend::lang.dashboard.widget_title_label',
+                'default' => 'rainlab.googleanalytics::lang.widgets.title_traffic_sources',
+                'type' => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'reportSize' => [
-                'title'             => 'rainlab.googleanalytics::lang.widgets.traffic_sources_report_size',
-                'default'           => '150',
-                'type'              => 'string',
+                'title' => 'rainlab.googleanalytics::lang.widgets.traffic_sources_report_size',
+                'default' => '150',
+                'type' => 'string',
                 'validationPattern' => '^[0-9]+$',
                 'validationMessage' => 'rainlab.googleanalytics::lang.widgets.traffic_sources_report_size_validation'
             ],
             'center' => [
-                'title'             => 'rainlab.googleanalytics::lang.widgets.traffic_sources_center',
-                'type'              => 'checkbox'
+                'title' => 'rainlab.googleanalytics::lang.widgets.traffic_sources_center',
+                'type' => 'checkbox'
             ],
             'legendAsTable' => [
-                'title'             => 'rainlab.googleanalytics::lang.widgets.legend_as_table',
-                'type'              => 'checkbox',
-                'default'           => 1
+                'title' => 'rainlab.googleanalytics::lang.widgets.legend_as_table',
+                'type' => 'checkbox',
+                'default' => 1
             ],
             'days' => [
-                'title'             => 'rainlab.googleanalytics::lang.widgets.days',
-                'default'           => '30',
-                'type'              => 'string',
+                'title' => 'rainlab.googleanalytics::lang.widgets.days',
+                'default' => '30',
+                'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'number' => [
-                'title'             => 'rainlab.googleanalytics::lang.widgets.traffic_sources_number',
-                'default'           => '10',
-                'type'              => 'string',
+                'title' => 'rainlab.googleanalytics::lang.widgets.traffic_sources_number',
+                'default' => '10',
+                'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'displayDescription' => [
-                'title'             => 'rainlab.googleanalytics::lang.widgets.display_description',
-                'type'              => 'checkbox',
-                'default'           => 1
+                'title' => 'rainlab.googleanalytics::lang.widgets.display_description',
+                'type' => 'checkbox',
+                'default' => 1
             ]
         ];
     }
 
+    /**
+     * loadData
+     */
     protected function loadData()
     {
         $days = $this->property('days');
@@ -101,21 +107,21 @@ class TrafficSources extends WidgetBase
                 'dimensions' => [new Dimension(['name' => 'firstUserSource'])],
                 'metrics' => [new Metric(['name' => 'totalUsers'])]
             ]);
-    
+
             $rows = [];
             $total = 0;
-    
+
             foreach ($data->getRows() as $row) {
                 $value = $row->getMetricValues()[0]->getValue();
-    
+
                 $rows[] = [
                     $row->getDimensionValues()[0]->getValue(),
                     $value
                 ];
-    
+
                 $total += $value;
             }
-    
+
             $widget->vars['rows'] = array_slice($rows, 0, $number);
             $widget->vars['total'] = $total;
         });

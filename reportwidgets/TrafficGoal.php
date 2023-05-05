@@ -30,33 +30,39 @@ class TrafficGoal extends WidgetBase
         return $this->makePartial('widget');
     }
 
+    /**
+     * defineProperties
+     */
     public function defineProperties()
     {
         return [
             'title' => [
-                'title'             => 'backend::lang.dashboard.widget_title_label',
-                'default'           => 'rainlab.googleanalytics::lang.widgets.title_traffic_goal',
-                'type'              => 'string',
+                'title' => 'backend::lang.dashboard.widget_title_label',
+                'default' => 'rainlab.googleanalytics::lang.widgets.title_traffic_goal',
+                'type' => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
-                'title'             => 'rainlab.googleanalytics::lang.widgets.traffic_goal_days',
-                'default'           => '7',
-                'type'              => 'string',
+                'title' => 'rainlab.googleanalytics::lang.widgets.traffic_goal_days',
+                'default' => '7',
+                'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'goal' => [
-                'title'             => 'rainlab.googleanalytics::lang.widgets.traffic_goal_goal',
-                'description'       => 'rainlab.googleanalytics::lang.widgets.traffic_goal_goal_description',
-                'default'           => '100',
-                'type'              => 'string',
+                'title' => 'rainlab.googleanalytics::lang.widgets.traffic_goal_goal',
+                'description' => 'rainlab.googleanalytics::lang.widgets.traffic_goal_goal_description',
+                'default' => '100',
+                'type' => 'string',
                 'validationPattern' => '^[0-9]+$',
                 'validationMessage' => 'rainlab.googleanalytics::lang.widgets.traffic_goal_goal_validation'
             ]
         ];
     }
 
+    /**
+     * loadData
+     */
     protected function loadData()
     {
         $days = $this->property('days');
@@ -82,14 +88,14 @@ class TrafficGoal extends WidgetBase
                 'dimensions' => [new Dimension(['name' => 'pagePath'])],
                 'metrics' => [new Metric(['name' => 'screenPageViews'])]
             ]);
-    
+
             $total = 0;
             $rows = $data->getRows();
             if (count($rows)) {
                 $row = $rows[0];
                 $total = $row->getMetricValues()[0]->getValue();
             }
-    
+
             $widget->vars['total'] = $total;
             $widget->vars['percentage'] = min(round($total/$goal*100), 100);
         });
