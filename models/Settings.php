@@ -1,23 +1,15 @@
 <?php namespace RainLab\GoogleAnalytics\Models;
 
-use October\Rain\Database\Model;
-
 /**
  * Settings for Google Analytics
  *
  * @package rainlab/googleanalytics
  * @author Alexey Bobkov, Samuel Georges
  */
-class Settings extends Model
+class Settings extends \System\Models\SettingModel
 {
     use \October\Rain\Database\Traits\Validation;
-
-    /**
-     * @var array implement
-     */
-    public $implement = [
-        \System\Behaviors\SettingsModel::class
-    ];
+    use \October\Rain\Database\Traits\Multisite;
 
     /**
      * @var string settingsCode
@@ -28,6 +20,11 @@ class Settings extends Model
      * @var string settingsFields
      */
     public $settingsFields = 'fields.yaml';
+
+    /**
+     * @var array propagatable fields
+     */
+    protected $propagatable = [];
 
     /**
      * @var array attachOne
