@@ -71,6 +71,17 @@ You can use Google Tag Manager to install the tracker code. Below is an explanat
 
 After installing the tracker, you can add Google Analytics dashboard widgets and preview the traffic statistics without leaving October CMS.
 
+## Compatibility with Multisite
+
+If every site should have its own analytics settings and widgets, open the **config/multisite.php** file and enable the setting below. Change the value to `true` to enable unique configuration for each site definition.
+
+```php
+'features' => [
+    // ...
+    'rainlab_googleanalytics_setting' => false,
+]
+```
+
 ## Troubleshooting
 
 ### Fix for Windows / XAMPP

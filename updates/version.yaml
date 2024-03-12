@@ -16,3 +16,4 @@ v1.3.0: Upgraded tracker code to Universal Analytics (gtag.js)
 v1.3.1: Package renamed to rainlab/googleanalytics-plugin
 v2.0.1: Updated to support Google Analytics 4
 v2.0.2: Minor bugfix in widget base class
+v2.0.3: Adds opt-in multisite support to settings
