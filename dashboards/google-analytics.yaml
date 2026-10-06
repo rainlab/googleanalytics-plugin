@@ -99,7 +99,8 @@ reports:
     traffic_sources:
         row: 5
         width: 10
-        type: table
+        type: chart
+        chartType: doughnut
         title: Traffic Sources
         limit: 10
         dimension: source
@@ -110,12 +111,12 @@ reports:
             sessions:
                 color: "#a855f7"
                 displayTotals: true
-                displayRelativeBar: true
 
     browsers:
         row: 5
         width: 10
-        type: table
+        type: chart
+        chartType: doughnut
         title: Browsers
         limit: 10
         dimension: browser
@@ -126,4 +127,3 @@ reports:
             users:
                 color: "#0ea5e9"
                 displayTotals: true
-                displayRelativeBar: true
