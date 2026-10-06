@@ -2,6 +2,7 @@
 
 - [Upgrading to 1.1 from 1.0](#upgrade-1.1)
 - [Upgrading to 2.0 from 1.3](#upgrade-2.0)
+- [Upgrading to 3.0 from 2.1](#upgrade-3.0)
 
 <a name="upgrade-1.1"></a>
 ## Upgrading To 1.1
@@ -24,3 +25,18 @@ The Profile ID number has also changed, follow these settings to find the new on
 ## Upgrading To 2.0
 
 Google will stop processing data for Universal Google Analytics on July 1, 2023. You will need to create a Google Analytics 4 property, upgrade the plugin, and configure it to access the new property. Refer to the plugin documentation for a detailed description of the configuration process.
+
+<a name="upgrade-3.0"></a>
+## Upgrading To 3.0
+
+The report widgets have been removed in favor of the **Google Analytics** dashboard and data source. The reports now follow the dashboard date range, and the data source can build your own indicators, charts and tables on any dashboard.
+
+Dashboards that still include the old widgets show an error in their place. Remove these widgets and add new ones that use the **Google Analytics** data source.
+
+Old Widget | Replacement
+------------- | -------------
+**Traffic overview** | Line chart with the Date dimension and the Pageviews metric
+**Traffic Sources** | Doughnut chart with the Source dimension and the Sessions metric
+**Browsers** | Doughnut chart with the Browser dimension and the Users metric
+**Top Pages** | Table with the Page Path dimension and the Pageviews metric
+**Traffic Goal** | Indicator with the Sessions metric and a Goal

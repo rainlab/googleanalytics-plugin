@@ -65,28 +65,6 @@ class Plugin extends PluginBase
                     'label' => 'Google Analytics',
                     'permissions' => ['rainlab.googleanalytics.view_widgets']
                 ]
-            ],
-            'widgets' => [
-                \RainLab\GoogleAnalytics\ReportWidgets\TrafficOverview::class => [
-                    'label' => 'Google Analytics traffic overview',
-                    'permissions' => ['rainlab.googleanalytics.view_widgets']
-                ],
-                \RainLab\GoogleAnalytics\ReportWidgets\TrafficSources::class => [
-                    'label' => 'Google Analytics traffic sources',
-                    'permissions' => ['rainlab.googleanalytics.view_widgets']
-                ],
-                \RainLab\GoogleAnalytics\ReportWidgets\Browsers::class => [
-                    'label' => 'Google Analytics browsers',
-                    'permissions' => ['rainlab.googleanalytics.view_widgets']
-                ],
-                \RainLab\GoogleAnalytics\ReportWidgets\TrafficGoal::class => [
-                    'label' => 'Google Analytics traffic goal',
-                    'permissions' => ['rainlab.googleanalytics.view_widgets']
-                ],
-                \RainLab\GoogleAnalytics\ReportWidgets\TopPages::class => [
-                    'label' => 'Google Analytics top pages',
-                    'permissions' => ['rainlab.googleanalytics.view_widgets']
-                ]
             ]
         ];
     }

@@ -73,12 +73,12 @@ You can use Google Tag Manager to install the tracker code. Below is an explanat
 
 After installing the tracker, open the **Google Analytics** dashboard to preview the traffic statistics without leaving October CMS. The reports follow the dashboard date range and can be compared with a previous period.
 
-When editing a dashboard, choose the **Google Analytics** data source to build your own indicators, charts and tables. To track a target, as the former Traffic Goal widget did, set a **Goal** on an indicator.
+When editing a dashboard, choose the **Google Analytics** data source to build your own indicators, charts and tables. Set a **Goal** on an indicator to track the progress toward a target.
 
 - **Dimensions:** Date, Page Path, Source, Channel, Browser, Device and Country.
 - **Metrics:** Pageviews, Sessions, Users, New Users, Bounce Rate and Avg. Session Duration.
 
-The dashboard and the data source require the **View dashboard widgets** permission. The report widgets from earlier versions still work, but they are deprecated in favor of the data source.
+The dashboard and the data source require the **View dashboard widgets** permission.
 
 ## Compatibility with Multisite
 
