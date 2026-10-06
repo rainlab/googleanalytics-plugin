@@ -2,8 +2,8 @@
 
 use RainLab\GoogleAnalytics\Classes\Analytics;
 use Google\Analytics\Data\V1beta\DateRange;
-use Google\Analytics\Data\V1beta\Dimension;
 use Google\Analytics\Data\V1beta\Metric;
+use Google\Analytics\Data\V1beta\RunReportRequest;
 use ApplicationException;
 use Exception;
 
@@ -38,24 +38,24 @@ class TrafficGoal extends WidgetBase
         return [
             'title' => [
                 'title' => 'backend::lang.dashboard.widget_title_label',
-                'default' => 'rainlab.googleanalytics::lang.widgets.title_traffic_goal',
+                'default' => 'Traffic Goal',
                 'type' => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.traffic_goal_days',
+                'title' => 'Period',
                 'default' => '7',
                 'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'goal' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.traffic_goal_goal',
-                'description' => 'rainlab.googleanalytics::lang.widgets.traffic_goal_goal_description',
+                'title' => 'Traffic goal, visits',
+                'description' => 'Specify the total number of desired visits per the period defined with the Period parameter',
                 'default' => '100',
                 'type' => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'rainlab.googleanalytics::lang.widgets.traffic_goal_goal_validation'
+                'validationMessage' => 'Please specify the traffic goal as an integer value.'
             ]
         ];
     }
@@ -77,17 +77,16 @@ class TrafficGoal extends WidgetBase
 
         $this->loadCached(['days', 'goal'], ['total', 'percentage'], function($widget) use ($days, $goal) {
             $obj = Analytics::instance();
-            $data = $obj->client->runReport([
+            $data = $obj->client->runReport(new RunReportRequest([
                 'property' => 'properties/' . $obj->propertyId,
-                'dateRanges' => [
+                'date_ranges' => [
                     new DateRange([
                         'start_date' => $days.'daysAgo',
                         'end_date' => 'today',
                     ]),
                 ],
-                'dimensions' => [new Dimension(['name' => 'pagePath'])],
-                'metrics' => [new Metric(['name' => 'screenPageViews'])]
-            ]);
+                'metrics' => [new Metric(['name' => 'sessions'])]
+            ]));
 
             $total = 0;
             $rows = $data->getRows();

@@ -4,6 +4,7 @@ use RainLab\GoogleAnalytics\Classes\Analytics;
 use Google\Analytics\Data\V1beta\DateRange;
 use Google\Analytics\Data\V1beta\Dimension;
 use Google\Analytics\Data\V1beta\Metric;
+use Google\Analytics\Data\V1beta\RunReportRequest;
 use ApplicationException;
 use Exception;
 
@@ -38,13 +39,13 @@ class TrafficOverview extends WidgetBase
         return [
             'title' => [
                 'title' => 'backend::lang.dashboard.widget_title_label',
-                'default' => 'rainlab.googleanalytics::lang.widgets.title_traffic_overview',
+                'default' => 'Traffic overview',
                 'type' => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.days',
+                'title' => 'Number of days to display data for',
                 'default' => '30',
                 'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
@@ -64,9 +65,9 @@ class TrafficOverview extends WidgetBase
 
         $this->loadCached(['days', 'goal'], ['rows'], function($widget) use ($days) {
             $obj = Analytics::instance();
-            $data = $obj->client->runReport([
+            $data = $obj->client->runReport(new RunReportRequest([
                 'property' => 'properties/' . $obj->propertyId,
-                'dateRanges' => [
+                'date_ranges' => [
                     new DateRange([
                         'start_date' => $days.'daysAgo',
                         'end_date' => 'today',
@@ -74,7 +75,7 @@ class TrafficOverview extends WidgetBase
                 ],
                 'dimensions' => [new Dimension(['name' => 'date'])],
                 'metrics' => [new Metric(['name' => 'screenPageViews'])]
-            ]);
+            ]));
 
             $rows = $data->getRows();
 

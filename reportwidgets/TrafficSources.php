@@ -4,6 +4,7 @@ use RainLab\GoogleAnalytics\Classes\Analytics;
 use Google\Analytics\Data\V1beta\DateRange;
 use Google\Analytics\Data\V1beta\Dimension;
 use Google\Analytics\Data\V1beta\Metric;
+use Google\Analytics\Data\V1beta\RunReportRequest;
 use ApplicationException;
 use Exception;
 
@@ -38,41 +39,41 @@ class TrafficSources extends WidgetBase
         return [
             'title' => [
                 'title' => 'backend::lang.dashboard.widget_title_label',
-                'default' => 'rainlab.googleanalytics::lang.widgets.title_traffic_sources',
+                'default' => 'Traffic Sources',
                 'type' => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'reportSize' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.traffic_sources_report_size',
+                'title' => 'Chart radius',
                 'default' => '150',
                 'type' => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'rainlab.googleanalytics::lang.widgets.traffic_sources_report_size_validation'
+                'validationMessage' => 'Please specify the chart size as an integer value'
             ],
             'center' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.traffic_sources_center',
+                'title' => 'Center the chart',
                 'type' => 'checkbox'
             ],
             'legendAsTable' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.legend_as_table',
+                'title' => 'Display legend as a table',
                 'type' => 'checkbox',
                 'default' => 1
             ],
             'days' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.days',
+                'title' => 'Number of days to display data for',
                 'default' => '30',
                 'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'number' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.traffic_sources_number',
+                'title' => 'Number of sources to display',
                 'default' => '10',
                 'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'displayDescription' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.display_description',
+                'title' => 'Display the report description',
                 'type' => 'checkbox',
                 'default' => 1
             ]
@@ -96,9 +97,9 @@ class TrafficSources extends WidgetBase
 
         $this->loadCached(['days', 'number'], ['rows', 'total'], function($widget) use ($days, $number) {
             $obj = Analytics::instance();
-            $data = $obj->client->runReport([
+            $data = $obj->client->runReport(new RunReportRequest([
                 'property' => 'properties/' . $obj->propertyId,
-                'dateRanges' => [
+                'date_ranges' => [
                     new DateRange([
                         'start_date' => $days.'daysAgo',
                         'end_date' => 'today',
@@ -106,7 +107,7 @@ class TrafficSources extends WidgetBase
                 ],
                 'dimensions' => [new Dimension(['name' => 'firstUserSource'])],
                 'metrics' => [new Metric(['name' => 'totalUsers'])]
-            ]);
+            ]));
 
             $rows = [];
             $total = 0;

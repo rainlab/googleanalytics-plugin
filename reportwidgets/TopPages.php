@@ -4,6 +4,7 @@ use RainLab\GoogleAnalytics\Classes\Analytics;
 use Google\Analytics\Data\V1beta\DateRange;
 use Google\Analytics\Data\V1beta\Dimension;
 use Google\Analytics\Data\V1beta\Metric;
+use Google\Analytics\Data\V1beta\RunReportRequest;
 use ApplicationException;
 use Exception;
 
@@ -38,19 +39,19 @@ class TopPages extends WidgetBase
         return [
             'title' => [
                 'title' => 'backend::lang.dashboard.widget_title_label',
-                'default' => 'rainlab.googleanalytics::lang.widgets.title_toppages',
+                'default' => 'Top Pages',
                 'type' => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'days' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.days',
+                'title' => 'Number of days to display data for',
                 'default' => '7',
                 'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'number' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.toppages_number',
+                'title' => 'Number of pages to display',
                 'default' => '5',
                 'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
@@ -72,9 +73,9 @@ class TopPages extends WidgetBase
         $this->loadCached(['number'], ['rows', 'total'], function($widget) use ($numRows, $days) {
             $obj = Analytics::instance();
 
-            $data = $obj->client->runReport([
+            $data = $obj->client->runReport(new RunReportRequest([
                 'property' => 'properties/' . $obj->propertyId,
-                'dateRanges' => [
+                'date_ranges' => [
                     new DateRange([
                         'start_date' => $days.'daysAgo',
                         'end_date' => 'today',
@@ -82,7 +83,7 @@ class TopPages extends WidgetBase
                 ],
                 'dimensions' => [new Dimension(['name' => 'pagePath'])],
                 'metrics' => [new Metric(['name' => 'screenPageViews'])]
-            ]);
+            ]));
 
             $rows = [];
             $total = 0;

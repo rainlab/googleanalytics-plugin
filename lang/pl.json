@@ -1,0 +1,15 @@
+{
+  "Settings access": "Dostęp do ustawień",
+  "Google Analytics Plugin": "Wtyczka GoogleAnalytics",
+  "Domain name": "Nazwa domeny",
+  "Specify the domain name you are going to track": "Domena, która będzie śledzona.",
+  "Private key": "Klucz prywatny",
+  "The private key file you downloaded from Google API Console": "Klucz prywatny pobrany z konsoli Google API",
+  "Google Analytics API private key is not uploaded. Please configure Google Analytics access on the System / Settings / Google Analytics page.": "Klucz prywatny Google Analytics API nie został załadowany. Skonfiguruj wtyczkę w zakładce Ustawienia / Google Analytics",
+  "Google Analytics API access is not configured. Please configure it on the System / Settings / Google Analytics page.": "Dostęp do API Google Analytics API jest nieskonfigurowany. Skonfiguruj go w zakładce Ustawienia / Google Analytics",
+  "Provides the Google Analytics tracking and reporting.": "Umożliwia śledzenie i raportowanie za pomocą Google Analytics.",
+  "Configure Google Analytics API code and tracking options.": "Skonfiguruj API Google Analytics oraz opcja śledzenia.",
+  "Google Analytics tracker": "Tracker Google Analytics",
+  "Outputs a tracking code on a page.": "Umieszcza kod śledzący na stronie.",
+  "Tracking": "Śledzenie"
+}

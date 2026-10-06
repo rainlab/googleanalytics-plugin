@@ -6,9 +6,9 @@
             <table class="table data" data-control="rowlink">
                 <thead>
                     <tr>
-                        <th><span><?= e(trans('rainlab.googleanalytics::lang.strings.page_url')) ?></span></th>
-                        <th><span><?= e(trans('rainlab.googleanalytics::lang.strings.pageviews')) ?></span></th>
-                        <th><span>% <?= e(trans('rainlab.googleanalytics::lang.strings.pageviews')) ?></span></th>
+                        <th><span><?= e(__("Page URL")) ?></span></th>
+                        <th><span><?= e(__("Pageviews")) ?></span></th>
+                        <th><span>% <?= e(__("Pageviews")) ?></span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +29,7 @@
                     <?php endforeach ?>
                     <?php if (!count($rows)): ?>
                         <tr>
-                            <td colspan="3"><?= e(trans('rainlab.googleanalytics::lang.widgets.noresult_toppages')) ?></td>
+                            <td colspan="3"><?= e(__("There were no pageviews in the selected interval.")) ?></td>
                         </tr>
                     <?php endif ?>
                 </tbody>

@@ -18,7 +18,7 @@
         </div>
 
         <?php if ($this->property('displayDescription')): ?>
-            <p class="report-description"><?= e(trans('rainlab.googleanalytics::lang.widgets.description_browsers')) ?></p>
+            <p class="report-description"><?= e(__("This report shows you the number of people who visited your website using different web browsers")) ?></p>
         <?php endif ?>
     <?php else: ?>
         <p class="flash-message static warning"><?= e($error) ?></p>

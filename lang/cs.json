@@ -1,0 +1,15 @@
+{
+  "Settings access": "Přístup k nastavení",
+  "Google Analytics Plugin": "Google Analytics Plugin",
+  "Domain name": "Název domény",
+  "Specify the domain name you are going to track": "Název domény, kterou chcete měřit",
+  "Private key": "Privátní klíč",
+  "The private key file you downloaded from Google API Console": "Privátní klíč stažený z Google API Console",
+  "Google Analytics API private key is not uploaded. Please configure Google Analytics access on the System / Settings / Google Analytics page.": "Google Analytics API privátní klíč není nahraný. Prosím nahrajte ho na stránce System / Nastavení / Google Analytics.",
+  "Google Analytics API access is not configured. Please configure it on the System / Settings / Google Analytics page.": "Google Analytics API přístup není aktivní. Prosím nastavte ho na stránce System / Nastavení / Google Analytics.",
+  "Provides the Google Analytics tracking and reporting.": "Poskytuje měření do Google Analytics a zobrazování statistik návštěvnosti.",
+  "Configure Google Analytics API code and tracking options.": "Nastavte Google Analytics API kód a parametry měření.",
+  "Google Analytics tracker": "Google Analytics měřící kód",
+  "Outputs a tracking code on a page.": "Vypíše měřící kód na stránce.",
+  "Tracking": "Měření"
+}

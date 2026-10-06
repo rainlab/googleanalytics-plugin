@@ -1,7 +1,7 @@
 <?php namespace RainLab\GoogleAnalytics\ReportWidgets;
 
 use RainLab\GoogleAnalytics\Classes\Analytics;
-use Backend\Classes\ReportWidgetBase;
+use Dashboard\Classes\ReportWidgetBase;
 use Exception;
 use Cache;
 

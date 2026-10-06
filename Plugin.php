@@ -17,19 +17,11 @@ class Plugin extends PluginBase
     {
         return [
             'name' => 'Google Analytics',
-            'description' => 'rainlab.googleanalytics::lang.strings.plugin_desc',
+            'description' => 'Provides the Google Analytics tracking and reporting.',
             'author' => 'October CMS',
             'icon' => 'icon-bar-chart-o',
             'homepage' => 'https://github.com/rainlab/googleanalytics-plugin'
         ];
-    }
-
-    /**
-     * boot
-     */
-    public function boot()
-    {
-        set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__.'/vendor/google/apiclient/src');
     }
 
     /**
@@ -49,46 +41,46 @@ class Plugin extends PluginBase
     {
         return [
             'rainlab.googleanalytics.access_settings' => [
-                'tab' => 'rainlab.googleanalytics::lang.permissions.tab',
-                'label' => 'rainlab.googleanalytics::lang.permissions.settings'
+                'tab' => 'Google Analytics Plugin',
+                'label' => 'Settings access'
             ],
             'rainlab.googleanalytics.view_widgets' => [
-                'tab' => 'rainlab.googleanalytics::lang.permissions.tab',
-                'label' => 'rainlab.googleanalytics::lang.permissions.widgets'
+                'tab' => 'Google Analytics Plugin',
+                'label' => 'View dashboard widgets'
             ]
         ];
     }
 
     /**
-     * registerReportWidgets
+     * registerDashboards
      */
-    public function registerReportWidgets()
+    public function registerDashboards()
     {
         return [
-            'RainLab\GoogleAnalytics\ReportWidgets\TrafficOverview' => [
-                'label' => 'Google Analytics traffic overview',
-                'context' => 'dashboard',
-                'permissions' => ['rainlab.googleanalytics.view_widgets']
+            'dashboards' => [
+                'google-analytics' => '$/rainlab/googleanalytics/dashboards/google-analytics.yaml'
             ],
-            'RainLab\GoogleAnalytics\ReportWidgets\TrafficSources' => [
-                'label' => 'Google Analytics traffic sources',
-                'context' => 'dashboard',
-                'permissions' => ['rainlab.googleanalytics.view_widgets']
-            ],
-            'RainLab\GoogleAnalytics\ReportWidgets\Browsers' => [
-                'label' => 'Google Analytics browsers',
-                'context' => 'dashboard',
-                'permissions' => ['rainlab.googleanalytics.view_widgets']
-            ],
-            'RainLab\GoogleAnalytics\ReportWidgets\TrafficGoal' => [
-                'label' => 'Google Analytics traffic goal',
-                'context' => 'dashboard',
-                'permissions' => ['rainlab.googleanalytics.view_widgets']
-            ],
-            'RainLab\GoogleAnalytics\ReportWidgets\TopPages' => [
-                'label' => 'Google Analytics top pages',
-                'context' => 'dashboard',
-                'permissions' => ['rainlab.googleanalytics.view_widgets']
+            'widgets' => [
+                \RainLab\GoogleAnalytics\ReportWidgets\TrafficOverview::class => [
+                    'label' => 'Google Analytics traffic overview',
+                    'permissions' => ['rainlab.googleanalytics.view_widgets']
+                ],
+                \RainLab\GoogleAnalytics\ReportWidgets\TrafficSources::class => [
+                    'label' => 'Google Analytics traffic sources',
+                    'permissions' => ['rainlab.googleanalytics.view_widgets']
+                ],
+                \RainLab\GoogleAnalytics\ReportWidgets\Browsers::class => [
+                    'label' => 'Google Analytics browsers',
+                    'permissions' => ['rainlab.googleanalytics.view_widgets']
+                ],
+                \RainLab\GoogleAnalytics\ReportWidgets\TrafficGoal::class => [
+                    'label' => 'Google Analytics traffic goal',
+                    'permissions' => ['rainlab.googleanalytics.view_widgets']
+                ],
+                \RainLab\GoogleAnalytics\ReportWidgets\TopPages::class => [
+                    'label' => 'Google Analytics top pages',
+                    'permissions' => ['rainlab.googleanalytics.view_widgets']
+                ]
             ]
         ];
     }
@@ -102,7 +94,7 @@ class Plugin extends PluginBase
             'config' => [
                 'label' => 'Google Analytics',
                 'icon' => 'icon-bar-chart-o',
-                'description' => 'rainlab.googleanalytics::lang.strings.settings_desc',
+                'description' => 'Configure Google Analytics API code and tracking options.',
                 'class' => \RainLab\GoogleAnalytics\Models\Settings::class,
                 'permissions' => ['rainlab.googleanalytics.access_settings'],
                 'order' => 600

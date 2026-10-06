@@ -15,12 +15,9 @@
         }
     ],
     "require": {
-        "php": ">=8.0",
-        "composer/installers": "~1.0|~2.0",
-        "guzzlehttp/guzzle": "~7.0",
-        "google/apiclient": "^2.19",
-        "psr/cache": "^2.0|^3.0",
-        "google/analytics-data": "^0.9.5"
+        "php": ">=8.2",
+        "october/rain": ">=4.4",
+        "google/analytics-data": "^0.28.0"
     },
     "config": {
         "allow-plugins": {

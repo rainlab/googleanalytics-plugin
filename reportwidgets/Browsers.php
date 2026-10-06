@@ -3,6 +3,7 @@
 use Google\Analytics\Data\V1beta\DateRange;
 use Google\Analytics\Data\V1beta\Dimension;
 use Google\Analytics\Data\V1beta\Metric;
+use Google\Analytics\Data\V1beta\RunReportRequest;
 use RainLab\GoogleAnalytics\Classes\Analytics;
 use ApplicationException;
 use Exception;
@@ -38,31 +39,31 @@ class Browsers extends WidgetBase
         return [
             'title' => [
                 'title' => 'backend::lang.dashboard.widget_title_label',
-                'default' => 'rainlab.googleanalytics::lang.widgets.title_browsers',
+                'default' => 'Browsers',
                 'type' => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'backend::lang.dashboard.widget_title_error'
             ],
             'reportHeight' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.browsers_report_height',
+                'title' => 'Chart height',
                 'default' => '200',
                 'type' => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'rainlab.googleanalytics::lang.widgets.browsers_report_height_validation'
+                'validationMessage' => 'Please specify the chart height as an integer value.'
             ],
             'legendAsTable' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.legend_as_table',
+                'title' => 'Display legend as a table',
                 'type' => 'checkbox',
                 'default' => 1
             ],
             'days' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.days',
+                'title' => 'Number of days to display data for',
                 'default' => '7',
                 'type' => 'string',
                 'validationPattern' => '^[0-9]+$'
             ],
             'displayDescription' => [
-                'title' => 'rainlab.googleanalytics::lang.widgets.display_description',
+                'title' => 'Display the report description',
                 'type' => 'checkbox',
                 'default' => 1
             ]
@@ -82,9 +83,9 @@ class Browsers extends WidgetBase
         $this->loadCached(['days'], ['rows'], function($widget) use ($days) {
             $obj = Analytics::instance();
 
-            $data = $obj->client->runReport([
+            $data = $obj->client->runReport(new RunReportRequest([
                 'property' => 'properties/' . $obj->propertyId,
-                'dateRanges' => [
+                'date_ranges' => [
                     new DateRange([
                         'start_date' => $days.'daysAgo',
                         'end_date' => 'today',
@@ -92,7 +93,7 @@ class Browsers extends WidgetBase
                 ],
                 'dimensions' => [new Dimension(['name' => 'browser'])],
                 'metrics' => [new Metric(['name' => 'totalUsers'])]
-            ]);
+            ]));
 
             $rows = [];
 

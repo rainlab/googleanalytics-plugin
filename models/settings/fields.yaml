@@ -5,41 +5,41 @@
 fields:
     gapi_key:
         span: left
-        label: rainlab.googleanalytics::lang.settings.gapi_key
+        label: Private key
         type: fileupload
-        commentAbove: rainlab.googleanalytics::lang.settings.gapi_key_comment
+        commentAbove: The private key file you downloaded from Google API Console
         mode: file
         fileTypes: json
 
     profile_id:
         span: right
-        label: rainlab.googleanalytics::lang.settings.property_id
-        commentAbove: rainlab.googleanalytics::lang.settings.property_id_comment
+        label: Analytics Property ID number
+        commentAbove: You can find it on the Google Analytics Admin / Property Settings page
 
 tabs:
     fields:
         tracking_id:
-            tab: rainlab.googleanalytics::lang.strings.tracking
+            tab: Tracking
             span: left
-            label: rainlab.googleanalytics::lang.settings.measurement_id
-            commentAbove: rainlab.googleanalytics::lang.settings.measurement_id_comment
+            label: Measurement ID
+            commentAbove: You can find the Measurement ID on the Admin / Property / Data Streams / Stream page
 
         domain_name:
-            tab: rainlab.googleanalytics::lang.strings.tracking
+            tab: Tracking
             span: right
-            label: rainlab.googleanalytics::lang.settings.domain_name
-            commentAbove: rainlab.googleanalytics::lang.settings.domain_name_comment
+            label: Domain name
+            commentAbove: Specify the domain name you are going to track
 
         anonymize_ip:
-            tab: rainlab.googleanalytics::lang.strings.tracking
+            tab: Tracking
             type: switch
             span: left
-            label: rainlab.googleanalytics::lang.settings.anonymize_ip
-            commentAbove: rainlab.googleanalytics::lang.settings.anonymize_ip_comment
+            label: Anonymize IP
+            commentAbove: Activate the IP anonymization for visitors
 
         force_ssl:
-            tab: rainlab.googleanalytics::lang.strings.tracking
+            tab: Tracking
             type: switch
             span: left
-            label: rainlab.googleanalytics::lang.settings.force_ssl
-            commentAbove: rainlab.googleanalytics::lang.settings.force_ssl_comment
+            label: Force SSL
+            commentAbove: Always use SSL to send data to Google
