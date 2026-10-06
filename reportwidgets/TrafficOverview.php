@@ -11,6 +11,7 @@ use Exception;
 /**
  * Google Analytics traffic overview widget.
  *
+ * @deprecated use a chart report with the AnalyticsDataSource instead
  * @package backend
  * @author Alexey Bobkov, Samuel Georges
  */

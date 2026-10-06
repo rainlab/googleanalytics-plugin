@@ -46,5 +46,20 @@
   "Center the chart": "Center the chart",
   "Number of sources to display": "Number of sources to display",
   "Chart radius": "Chart radius",
-  "Please specify the chart size as an integer value": "Please specify the chart size as an integer value"
+  "Please specify the chart size as an integer value": "Please specify the chart size as an integer value",
+  "Google Analytics": "Google Analytics",
+  "Date": "Date",
+  "Page Path": "Page Path",
+  "Source": "Source",
+  "Channel": "Channel",
+  "Browser": "Browser",
+  "Device": "Device",
+  "Country": "Country",
+  "Sessions": "Sessions",
+  "Users": "Users",
+  "New Users": "New Users",
+  "Bounce Rate": "Bounce Rate",
+  "Avg. Session Duration": "Avg. Session Duration",
+  "Google Analytics does not support the last hour interval.": "Google Analytics does not support the last hour interval.",
+  "Google Analytics cannot filter by the :operation operation.": "Google Analytics cannot filter by the :operation operation."
 }

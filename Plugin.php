@@ -60,6 +60,12 @@ class Plugin extends PluginBase
             'dashboards' => [
                 'google-analytics' => '$/rainlab/googleanalytics/dashboards/google-analytics.yaml'
             ],
+            'dataSources' => [
+                \RainLab\GoogleAnalytics\Classes\AnalyticsDataSource::class => [
+                    'label' => 'Google Analytics',
+                    'permissions' => ['rainlab.googleanalytics.view_widgets']
+                ]
+            ],
             'widgets' => [
                 \RainLab\GoogleAnalytics\ReportWidgets\TrafficOverview::class => [
                     'label' => 'Google Analytics traffic overview',

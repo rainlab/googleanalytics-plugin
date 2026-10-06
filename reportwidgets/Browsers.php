@@ -11,6 +11,7 @@ use Exception;
 /**
  * Google Analytics browsers overview widget.
  *
+ * @deprecated use a table report with the AnalyticsDataSource instead
  * @package backend
  * @author Alexey Bobkov, Samuel Georges
  */

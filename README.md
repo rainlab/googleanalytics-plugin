@@ -69,7 +69,16 @@ You can use Google Tag Manager to install the tracker code. Below is an explanat
 {% component 'googleTracker' %}
 ```
 
-After installing the tracker, you can add Google Analytics dashboard widgets and preview the traffic statistics without leaving October CMS.
+## Viewing the dashboard
+
+After installing the tracker, open the **Google Analytics** dashboard to preview the traffic statistics without leaving October CMS. The reports follow the dashboard date range and can be compared with a previous period.
+
+When editing a dashboard, choose the **Google Analytics** data source to build your own indicators, charts and tables.
+
+- **Dimensions:** Date, Page Path, Source, Channel, Browser, Device and Country.
+- **Metrics:** Pageviews, Sessions, Users, New Users, Bounce Rate and Avg. Session Duration.
+
+The dashboard and the data source require the **View dashboard widgets** permission. The report widgets from earlier versions still work, but they are deprecated in favor of the data source.
 
 ## Compatibility with Multisite
 

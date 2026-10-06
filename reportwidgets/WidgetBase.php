@@ -7,6 +7,8 @@ use Cache;
 
 /**
  * WidgetBase
+ *
+ * @deprecated use the AnalyticsDataSource with the built-in dashboard widgets instead
  */
 class WidgetBase extends ReportWidgetBase
 {

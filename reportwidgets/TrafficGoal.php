@@ -10,6 +10,7 @@ use Exception;
 /**
  * Google Analytics traffic goal widget.
  *
+ * @deprecated use an indicator report with the AnalyticsDataSource instead
  * @package backend
  * @author Alexey Bobkov, Samuel Georges
  */

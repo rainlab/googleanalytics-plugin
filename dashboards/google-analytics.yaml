@@ -4,32 +4,126 @@
 
 name: Google Analytics
 icon: ph ph-google-logo
-showInterval: false
 permissions:
     - rainlab.googleanalytics.view_widgets
 
 reports:
-    traffic_overview:
-        type: RainLab\GoogleAnalytics\ReportWidgets\TrafficOverview
+    traffic_title:
         row: 1
         width: 20
+        type: section-title
+        title: Traffic
+        showInterval: true
 
-    traffic_sources:
-        type: RainLab\GoogleAnalytics\ReportWidgets\TrafficSources
+    pageviews:
         row: 2
-        width: 10
+        width: 5
+        type: indicator
+        icon: ph ph-eye
+        icon_status: status-info
+        title: Pageviews
+        metric: pageviews
+        dimension: date
+        dataSource: RainLab\GoogleAnalytics\Classes\AnalyticsDataSource
 
-    browsers:
-        type: RainLab\GoogleAnalytics\ReportWidgets\Browsers
+    users:
         row: 2
-        width: 10
+        width: 5
+        type: indicator
+        icon: ph ph-users
+        icon_status: status-info
+        title: Users
+        metric: users
+        dimension: date
+        dataSource: RainLab\GoogleAnalytics\Classes\AnalyticsDataSource
+
+    sessions:
+        row: 2
+        width: 5
+        type: indicator
+        icon: ph ph-browsers
+        icon_status: status-info
+        title: Sessions
+        metric: sessions
+        dimension: date
+        dataSource: RainLab\GoogleAnalytics\Classes\AnalyticsDataSource
+
+    bounce_rate:
+        row: 2
+        width: 5
+        type: indicator
+        icon: ph ph-arrow-u-up-left
+        icon_status: status-info
+        title: Bounce Rate
+        metric: bounce_rate
+        dimension: date
+        dataSource: RainLab\GoogleAnalytics\Classes\AnalyticsDataSource
+
+    traffic_overview:
+        row: 3
+        width: 20
+        type: chart
+        chartType: line
+        dimension: date
+        sortBy: oc_dimension
+        sortOrder: asc
+        dataSource: RainLab\GoogleAnalytics\Classes\AnalyticsDataSource
+        metrics:
+            pageviews:
+                color: "#84cc16"
+                displayTotals: true
+            users:
+                color: "#0ea5e9"
+                displayTotals: true
 
     top_pages:
-        type: RainLab\GoogleAnalytics\ReportWidgets\TopPages
-        row: 3
-        width: 14
+        row: 4
+        width: 20
+        type: table
+        title: Top Pages
+        limit: 10
+        dimension: page_path
+        sortBy: oc_metric-pageviews
+        sortOrder: desc
+        dataSource: RainLab\GoogleAnalytics\Classes\AnalyticsDataSource
+        metrics:
+            pageviews:
+                color: "#84cc16"
+                displayTotals: true
+                displayRelativeBar: true
+            users:
+                color: "#0ea5e9"
+                displayTotals: true
+                displayRelativeBar: true
 
-    traffic_goal:
-        type: RainLab\GoogleAnalytics\ReportWidgets\TrafficGoal
-        row: 3
-        width: 6
+    traffic_sources:
+        row: 5
+        width: 10
+        type: table
+        title: Traffic Sources
+        limit: 10
+        dimension: source
+        sortBy: oc_metric-sessions
+        sortOrder: desc
+        dataSource: RainLab\GoogleAnalytics\Classes\AnalyticsDataSource
+        metrics:
+            sessions:
+                color: "#a855f7"
+                displayTotals: true
+                displayRelativeBar: true
+
+    browsers:
+        row: 5
+        width: 10
+        type: table
+        title: Browsers
+        limit: 10
+        dimension: browser
+        sortBy: oc_metric-users
+        sortOrder: desc
+        dataSource: RainLab\GoogleAnalytics\Classes\AnalyticsDataSource
+        metrics:
+            users:
+                color: "#0ea5e9"
+                displayTotals: true
+                displayRelativeBar: true
